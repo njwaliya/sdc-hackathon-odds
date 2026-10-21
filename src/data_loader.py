@@ -22,16 +22,25 @@ def _read(filename, data_dir=None):
 
 
 def load_roles(data_dir=None):
-    roles = []
+    """roles.csv format panjang: satu baris = satu role + satu skill.
+    Lajur: role_id, role_name, role_type, skill_name, skill_type,
+           importance, related_roles, source_url"""
+    roles = {}
     for r in _read("roles.csv", data_dir):
-        roles.append({
-            "role_id": r["role_id"].strip(),
+        rid = r["role_id"].strip()
+        role = roles.setdefault(rid, {
+            "role_id": rid,
             "role_name": r["role_name"].strip(),
-            "skills": _split(r["skills"]),
-            "related_roles": [x.strip() for x in r["related_roles"].split(";") if x.strip()],
+            "role_type": _norm(r.get("role_type") or ""),
+            "related_roles": [x.strip() for x in (r.get("related_roles") or "").split(";") if x.strip()],
             "source_url": r["source_url"].strip(),
+            "skills": {},        # nama skill -> importance (0-100)
+            "skill_types": {},   # nama skill -> jenis (skill/knowledge/...)
         })
-    return roles
+        name = _norm(r["skill_name"])
+        role["skills"][name] = float(r["importance"])
+        role["skill_types"][name] = _norm(r.get("skill_type") or "")
+    return list(roles.values())
 
 
 def load_trends(data_dir=None):
@@ -64,6 +73,8 @@ def load_sdg(data_dir=None):
     for r in _read("sdg_map.csv", data_dir):
         sdg.setdefault((_norm(r["item_type"]), _norm(r["item_name"])), []).append({
             "sdg_number": r["sdg_number"].strip(),
+            "sdg_target": (r.get("sdg_target") or "").strip(),
             "reason": r["reason"].strip(),
+            "source": (r.get("source") or "").strip(),
         })
     return sdg

@@ -1,4 +1,11 @@
-role_id,role_name,skills,related_roles,source_url
-43-3051.00,Payroll and Timekeeping Clerks,payroll processing;excel;attention to detail;record keeping;communication,Bookkeeping Clerks;HR Assistants,https://www.onetonline.org/link/details/43-3051.00
-13-1071.00,Human Resources Specialists,recruitment;communication;employee relations;excel;record keeping,HR Assistants;Training Specialists,https://www.onetonline.org/link/details/13-1071.00
-43-3031.00,Bookkeeping Accounting and Auditing Clerks,bookkeeping;excel;attention to detail;accounting software;record keeping,Payroll and Timekeeping Clerks,https://www.onetonline.org/link/details/43-3031.00
+role_id,role_name,role_type,skill_name,skill_type,importance,related_roles,source_url
+43-3051.00,Payroll and Timekeeping Clerks,current,mathematics,skill,50,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,mathematics (knowledge),knowledge,75,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,excel,skill,70,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,communication,skill,60,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
+13-1071.00,Human Resources Specialists,future,communication,skill,85,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,employee relations,skill,80,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,excel,skill,45,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
+43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,mathematics (knowledge),knowledge,80,43-3051.00,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,excel,skill,75,43-3051.00,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,accounting software,skill,70,43-3051.00,https://www.onetonline.org/link/details/43-3031.00

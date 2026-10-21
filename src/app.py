@@ -33,12 +33,16 @@ def match():
 
     roles, trends, courses, sdg = get_data()
     by_id = {r["role_id"]: r for r in roles}
+    names = {r["role_id"]: r["role_name"] for r in roles}
     results = []
     for top in sc.top_roles(skills, roles, trends, scenario, n=3):
         role = by_id[top["role_id"]]
         gap = sc.skill_gap(skills, role)
         top["skill_gap"] = gap
-        top["pathway"] = sc.pathway(gap, courses, trends, scenario)
+        top["pathway"] = sc.pathway(gap, courses, trends, scenario, role["skills"])
+        top["related_roles"] = [
+            {"role_id": c, "role_name": names.get(c, c)} for c in role["related_roles"]
+        ]
         top["sdg"] = sdg.get(("role", role["role_name"].lower()), [])
         results.append(top)
 

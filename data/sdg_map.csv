@@ -1,3 +1,3 @@
-item_type,item_name,sdg_number,reason
-role,Payroll and Timekeeping Clerks,8,SAMPLE - ganti dengan tag sebenar M1
-role,Human Resources Specialists,8,SAMPLE - ganti dengan tag sebenar M1
+item_type,item_name,sdg_number,sdg_target,reason,source
+role,Payroll and Timekeeping Clerks,8,8.5,SAMPLE - ganti dengan tag sebenar M1,SAMPLE
+role,Human Resources Specialists,8,8.5,SAMPLE - ganti dengan tag sebenar M1,SAMPLE

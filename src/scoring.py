@@ -1,7 +1,8 @@
 """Logik skor. Formula (setuju dengan pasukan):
     skor_role = 0.6 * skill_match + 0.4 * trend
-    skill_match = skill pengguna yang padan / skill diperlukan role
-    trend       = purata skor trend (0 hingga 1) bagi skill role itu
+    skill_match = jumlah importance skill yang padan / jumlah importance semua skill role
+    trend       = purata trend (0 hingga 1) bagi skill role, ditimbang dengan importance
+Skill yang lebih penting (importance tinggi) lebih berat dalam kedua-dua kiraan.
 Scenario: "moderate" (AI sederhana) atau "fast" (AI laju)."""
 
 W_SKILL = 0.6
@@ -15,19 +16,25 @@ def normalize_skills(skills):
 
 
 def skill_match(user_skills, role_skills):
-    if not role_skills:
+    """role_skills: dict {skill: importance}."""
+    total = sum(role_skills.values())
+    if total <= 0:
         return 0.0
     user = normalize_skills(user_skills)
-    return len(user & set(role_skills)) / len(role_skills)
+    return sum(w for s, w in role_skills.items() if s in user) / total
 
 
 def trend_score(role_skills, trends, scenario):
     if scenario not in SCENARIOS:
         raise ValueError(f"scenario mesti salah satu daripada {SCENARIOS}")
-    if not role_skills:
+    total = sum(role_skills.values())
+    if total <= 0:
         return DEFAULT_TREND
-    vals = [trends[s][scenario] if s in trends else DEFAULT_TREND for s in role_skills]
-    return sum(vals) / len(vals)
+    weighted = sum(
+        w * (trends[s][scenario] if s in trends else DEFAULT_TREND)
+        for s, w in role_skills.items()
+    )
+    return weighted / total
 
 
 def score_role(user_skills, role, trends, scenario):
@@ -36,6 +43,7 @@ def score_role(user_skills, role, trends, scenario):
     return {
         "role_id": role["role_id"],
         "role_name": role["role_name"],
+        "role_type": role.get("role_type", ""),
         "score": round(W_SKILL * sm + W_TREND * tr, 4),
         "skill_match": round(sm, 4),
         "trend": round(tr, 4),
@@ -50,22 +58,28 @@ def top_roles(user_skills, roles, trends, scenario="moderate", n=3):
 
 
 def skill_gap(user_skills, role):
+    """Skill yang role perlukan tapi pengguna belum ada, paling penting dahulu."""
     user = normalize_skills(user_skills)
-    return [s for s in role["skills"] if s not in user]
+    items = sorted(role["skills"].items(), key=lambda kv: kv[1], reverse=True)
+    return [s for s, _ in items if s not in user]
 
 
-def pathway(gap, courses, trends, scenario="moderate"):
-    """Susun skill gap: skill paling tinggi trend dipelajari dahulu."""
-    ordered = sorted(
-        gap,
-        key=lambda s: trends[s][scenario] if s in trends else DEFAULT_TREND,
-        reverse=True,
-    )
+def pathway(gap, courses, trends, scenario="moderate", role_skills=None):
+    """Susun skill gap: (importance x trend) tertinggi dipelajari dahulu."""
+    role_skills = role_skills or {}
+
+    def priority(skill):
+        imp = role_skills.get(skill, 50) / 100
+        tr = trends[skill][scenario] if skill in trends else DEFAULT_TREND
+        return imp * tr
+
+    ordered = sorted(gap, key=priority, reverse=True)
     steps = []
     for i, skill in enumerate(ordered, start=1):
         steps.append({
             "step": i,
             "skill": skill,
+            "importance": role_skills.get(skill),
             "courses": courses.get(skill, []),
             "trend_source": trends[skill]["source"] if skill in trends else None,
         })
