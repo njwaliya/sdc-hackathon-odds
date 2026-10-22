@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Section - Your Career Growth Partner</title>
+  <!-- Google Fonts for Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Container Main Hero Section */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      /* Background Image*/
+      background-image: url('https://i.pinimg.com/736x/76/1b/c3/761bc33a7566af6d0afc0d8d91e142a0.jpg');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    /* Gradient Overlay*/
+    .hero-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /*linear-gradient purple*/
+      background: linear-gradient(
+        115deg,
+        rgba(145, 38, 238, 0.82),
+        rgba(104, 46, 156, 0.52),
+        rgba(202, 69, 196, 0.60)
+      );
+      z-index: 1;
+    }
+
+    /* Topleft Tagline*/
+    .eyebrow-tagline {
+      position: absolute;
+      top: 2.5rem;
+      left: 3rem;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      opacity: 0.9;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /*Glassmorphism at the center */
+    .glass-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 900px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+
+      /*Frosted Glass Effect*/
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Main Headline*/
+    .glass-card h1 {
+      color: #ffffff;
+      font-size: 3.2rem;
+      font-weight: 100;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      letter-spacing: -0.5px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-card h1 span {
+      display: block;
+    }
+
+    .glass-card h2 {
+      color: #ffffff;
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      letter-spacing: -0.5px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-card h2 span {
+      display: block;
+    }
+
+    /* Sub-headline */
+    .glass-card p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size:0.80rem;
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      max-width: 720px;
+      margin: 0 auto 2.5rem auto;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Call To Action (CTA) button*/
+    .cta-button {
+      display: inline-block;
+      padding: 0.95rem 3rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+
+      /* Gradient & Shadow button */
+      background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+      box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    /*mouse hover effect at the button */
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(168, 85, 247, 0.6);
+      background: linear-gradient(135deg, #b566f8 0%, #e057f2 100%);
+    }
+
+    /* Responsive Design for Phone*/
+    @media (max-width: 768px) {
+      .eyebrow-tagline {
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 0.75rem;
+      }
+
+      .glass-card {
+        padding: 2.5rem 1.5rem;
+        border-radius: 24px;
+      }
+
+      .glass-card h1 {
+        font-size: 2rem;
+      }
+
+      .glass-card p {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-container">
+    <!-- Topleft tagline -->
+    <div class="eyebrow-tagline">
+      FuturePath
+    </div>
+
+    <!-- Glassmorphism -->
+    <div class="glass-card">
+      <h1><span>Know Your Skills</span></h1>
+      <h2><span>Unlock Your Career Potential</span></h2>
+
+      <p>
+        UPLOAD YOUR CV TO UNCOVER YOUR HIDDEN STRENGTHS AND DISCOVER THE EXACT SKILLS YOU NEED TO LAND YOUR NEXT BIG ROLE
+      </p>
+
+      <!-- button -->
+      <form id="cv-upload-form" onsubmit="return false;">
+
+        <!-- Input file -->
+        <input type="file" id="cv-file-input" name="cv_file" accept=".pdf,.doc,.docx" style="display: none;" onchange="showFileAlert(event)">
+
+        
+        <label for="cv-file-input" class="cta-button" style="cursor: pointer; display: inline-block;">
+          UPLOAD YOUR CV
+        </label>
+
+      </form>
+
+      <script>
+        function showFileAlert(event) {
+          const file = event.target.files[0];
+          if (file) {
+            console.log("Choosen file:", file.name);
+            alert(`File successfully upload!`);
+          }
+        }
+      </script>
+    </div>
+  </div>
+
+</body>
+</html>
