@@ -1,3 +1,45 @@
 item_type,item_name,sdg_number,sdg_target,reason,source
-role,Payroll and Timekeeping Clerks,8,8.5,SAMPLE - ganti dengan tag sebenar M1,SAMPLE
-role,Human Resources Specialists,8,8.5,SAMPLE - ganti dengan tag sebenar M1,SAMPLE
+skill,administrative,4,4.4,"FuturePath AI shows the administrative gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,customer and personal service,4,4.4,"FuturePath AI shows the customer and personal service gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,english language,4,4.4,"FuturePath AI shows the english language gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,administration and management,4,4.4,"FuturePath AI shows the administration and management gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,computers and electronics,4,4.4,"FuturePath AI shows the computers and electronics gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,economics and accounting,4,4.4,"FuturePath AI shows the economics and accounting gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,mathematics (knowledge),4,4.4,"FuturePath AI shows the mathematics (knowledge) gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,personnel and human resources,4,4.4,"FuturePath AI shows the personnel and human resources gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,law and government,4,4.4,"FuturePath AI shows the law and government gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,education and training,4,4.4,"FuturePath AI shows the education and training gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,public safety and security,4,4.4,"FuturePath AI shows the public safety and security gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,sales and marketing,4,4.4,"FuturePath AI shows the sales and marketing gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,active listening,4,4.4,"FuturePath AI shows the active listening gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,critical thinking,4,4.4,"FuturePath AI shows the critical thinking gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,monitoring,4,4.4,"FuturePath AI shows the monitoring gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,reading comprehension,4,4.4,"FuturePath AI shows the reading comprehension gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,speaking,4,4.4,"FuturePath AI shows the speaking gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,writing,4,4.4,"FuturePath AI shows the writing gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,complex problem solving,4,4.4,"FuturePath AI shows the complex problem solving gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,time management,4,4.4,"FuturePath AI shows the time management gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,active learning,4,4.4,"FuturePath AI shows the active learning gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,judgment and decision making,4,4.4,"FuturePath AI shows the judgment and decision making gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,service orientation,4,4.4,"FuturePath AI shows the service orientation gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,social perceptiveness,4,4.4,"FuturePath AI shows the social perceptiveness gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,coordination,4,4.4,"FuturePath AI shows the coordination gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,mathematics,4,4.4,"FuturePath AI shows the mathematics gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,negotiation,4,4.4,"FuturePath AI shows the negotiation gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,persuasion,4,4.4,"FuturePath AI shows the persuasion gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,systems analysis,4,4.4,"FuturePath AI shows the systems analysis gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,learning strategies,4,4.4,"FuturePath AI shows the learning strategies gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,systems evaluation,4,4.4,"FuturePath AI shows the systems evaluation gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,instructing,4,4.4,"FuturePath AI shows the instructing gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,management of personnel resources,4,4.4,"FuturePath AI shows the management of personnel resources gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+skill,management of financial resources,4,4.4,"FuturePath AI shows the management of financial resources gap for a target role and recommends courses to build it, supporting skills relevant to employment",https://sdgs.un.org/goals/goal4
+role,Payroll and Timekeeping Clerks,8,8.5,Current role of the users FuturePath AI supports; reskilling aims to help them move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,"Bookkeeping, Accounting, and Auditing Clerks",8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,"Human Resources Assistants, Except Payroll and Timekeeping",8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,Human Resources Specialists,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,"Compensation, Benefits, and Job Analysis Specialists",8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,Accountants and Auditors,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,Budget Analysts,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,First-Line Supervisors of Office and Administrative Support Workers,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,Administrative Services Managers,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
+role,Financial Managers,8,8.5,Target role in the career pathway FuturePath AI suggests; it aims to support a move toward productive employment and decent work,https://sdgs.un.org/goals/goal8
