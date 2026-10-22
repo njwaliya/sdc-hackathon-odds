@@ -1,86 +1,197 @@
-"""Logik skor. Formula (setuju dengan pasukan):
-    skor_role = 0.6 * skill_match + 0.4 * trend
-    skill_match = jumlah importance skill yang padan / jumlah importance semua skill role
-    trend       = purata trend (0 hingga 1) bagi skill role, ditimbang dengan importance
-Skill yang lebih penting (importance tinggi) lebih berat dalam kedua-dua kiraan.
-Scenario: "moderate" (AI sederhana) atau "fast" (AI laju)."""
+
+"""Pengiraan padanan kerjaya dan laluan pembelajaran."""
 
 W_SKILL = 0.6
 W_TREND = 0.4
-DEFAULT_TREND = 0.5  # dipakai jika skill tiada dalam trends.csv
+
+DEFAULT_TREND = 0.5
 SCENARIOS = ("moderate", "fast")
 
 
 def normalize_skills(skills):
-    return {s.strip().lower() for s in skills if s and s.strip()}
+    """Seragamkan nama skill pengguna."""
+    return {
+        str(skill).strip().lower()
+        for skill in skills
+        if skill and str(skill).strip()
+    }
 
 
 def skill_match(user_skills, role_skills):
-    """role_skills: dict {skill: importance}."""
+    """
+    Kira jumlah importance skill yang pengguna miliki
+    dibahagi jumlah importance semua skill role.
+    """
     total = sum(role_skills.values())
+
     if total <= 0:
         return 0.0
+
     user = normalize_skills(user_skills)
-    return sum(w for s, w in role_skills.items() if s in user) / total
+
+    matched = sum(
+        importance
+        for skill, importance in role_skills.items()
+        if skill in user
+    )
+
+    return matched / total
+
+
+def _get_trend_value(trends, skill, scenario):
+    """Dapatkan skor scenario dalam skala 0-1."""
+    info = trends.get(skill, {})
+    value = info.get(scenario, DEFAULT_TREND)
+
+    try:
+        value = float(value)
+    except (TypeError, ValueError):
+        return DEFAULT_TREND
+
+    # Lindungi pengiraan jika ada data luar julat.
+    if not 0.0 <= value <= 1.0:
+        return DEFAULT_TREND
+
+    return value
 
 
 def trend_score(role_skills, trends, scenario):
+    """
+    Purata skor scenario yang ditimbang mengikut importance skill.
+    Skor datang daripada scenario_toggle.csv melalui data_loader.
+    """
     if scenario not in SCENARIOS:
-        raise ValueError(f"scenario mesti salah satu daripada {SCENARIOS}")
+        raise ValueError(
+            f"scenario mesti salah satu daripada {SCENARIOS}"
+        )
+
     total = sum(role_skills.values())
+
     if total <= 0:
         return DEFAULT_TREND
+
     weighted = sum(
-        w * (trends[s][scenario] if s in trends else DEFAULT_TREND)
-        for s, w in role_skills.items()
+        importance * _get_trend_value(trends, skill, scenario)
+        for skill, importance in role_skills.items()
     )
+
     return weighted / total
 
 
-def score_role(user_skills, role, trends, scenario):
-    sm = skill_match(user_skills, role["skills"])
-    tr = trend_score(role["skills"], trends, scenario)
+def score_role(user_skills, role, trends, scenario="moderate"):
+    """Kira skor keseluruhan untuk satu role."""
+    if scenario not in SCENARIOS:
+        raise ValueError(
+            f"scenario mesti salah satu daripada {SCENARIOS}"
+        )
+
+    skill_score = skill_match(user_skills, role["skills"])
+    future_score = trend_score(role["skills"], trends, scenario)
+
+    final_score = (
+        W_SKILL * skill_score
+        + W_TREND * future_score
+    )
+
     return {
         "role_id": role["role_id"],
         "role_name": role["role_name"],
         "role_type": role.get("role_type", ""),
-        "score": round(W_SKILL * sm + W_TREND * tr, 4),
-        "skill_match": round(sm, 4),
-        "trend": round(tr, 4),
-        "source_url": role["source_url"],
+        "score": round(final_score, 4),
+        "skill_match": round(skill_score, 4),
+        "trend": round(future_score, 4),
+        "source_url": role.get("source_url", ""),
     }
 
 
-def top_roles(user_skills, roles, trends, scenario="moderate", n=3):
-    scored = [score_role(user_skills, r, trends, scenario) for r in roles]
-    scored.sort(key=lambda x: x["score"], reverse=True)
+def top_roles(
+    user_skills,
+    roles,
+    trends,
+    scenario="moderate",
+    n=3
+):
+    """Pulangkan role dengan skor tertinggi."""
+    if scenario not in SCENARIOS:
+        raise ValueError(
+            f"scenario mesti salah satu daripada {SCENARIOS}"
+        )
+
+    scored = [
+        score_role(user_skills, role, trends, scenario)
+        for role in roles
+    ]
+
+    scored.sort(
+        key=lambda item: item["score"],
+        reverse=True
+    )
+
     return scored[:n]
 
 
 def skill_gap(user_skills, role):
-    """Skill yang role perlukan tapi pengguna belum ada, paling penting dahulu."""
+    """Senaraikan skill role yang belum dimiliki pengguna."""
     user = normalize_skills(user_skills)
-    items = sorted(role["skills"].items(), key=lambda kv: kv[1], reverse=True)
-    return [s for s, _ in items if s not in user]
+
+    ordered_skills = sorted(
+        role["skills"].items(),
+        key=lambda item: item[1],
+        reverse=True
+    )
+
+    return [
+        skill
+        for skill, _ in ordered_skills
+        if skill not in user
+    ]
 
 
-def pathway(gap, courses, trends, scenario="moderate", role_skills=None):
-    """Susun skill gap: (importance x trend) tertinggi dipelajari dahulu."""
+def pathway(
+    gap,
+    courses,
+    trends,
+    scenario="moderate",
+    role_skills=None
+):
+    """
+    Susun skill yang perlu dipelajari berdasarkan
+    importance dan skor scenario.
+    """
+    if scenario not in SCENARIOS:
+        raise ValueError(
+            f"scenario mesti salah satu daripada {SCENARIOS}"
+        )
+
     role_skills = role_skills or {}
 
     def priority(skill):
-        imp = role_skills.get(skill, 50) / 100
-        tr = trends[skill][scenario] if skill in trends else DEFAULT_TREND
-        return imp * tr
+        importance = role_skills.get(skill, 50) / 100.0
+        future_score = _get_trend_value(
+            trends, skill, scenario
+        )
 
-    ordered = sorted(gap, key=priority, reverse=True)
+        return importance * future_score
+
+    ordered_gap = sorted(
+        gap,
+        key=priority,
+        reverse=True
+    )
+
     steps = []
-    for i, skill in enumerate(ordered, start=1):
+
+    for index, skill in enumerate(ordered_gap, start=1):
+        trend_info = trends.get(skill, {})
+
         steps.append({
-            "step": i,
+            "step": index,
             "skill": skill,
             "importance": role_skills.get(skill),
             "courses": courses.get(skill, []),
-            "trend_source": trends[skill]["source"] if skill in trends else None,
+            "trend_source": trend_info.get("source"),
+            "trend_label": trend_info.get("trend_label", ""),
+            "scenario_source": trend_info.get("scenario_source", ""),
         })
+
     return steps

@@ -21,6 +21,18 @@ def health():
     return jsonify({"status": "ok"})
 
 
+@app.get("/api/skills")
+def skills():
+    """Senarai skill unik dari roles.csv. M4 guna ini untuk kotak pilihan skill,
+    supaya nama sentiasa sama dengan data."""
+    roles = dl.load_roles()
+    found = {}
+    for r in roles:
+        for name, kind in r["skill_types"].items():
+            found[name] = kind
+    return jsonify({"skills": [{"skill": k, "skill_type": found[k]} for k in sorted(found)]})
+
+
 @app.post("/api/match")
 def match():
     body = request.get_json(silent=True) or {}

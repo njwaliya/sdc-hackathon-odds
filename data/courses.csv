@@ -1,3 +1,73 @@
-skill,course_name,provider,hours,cost,url
-excel,SAMPLE - ganti dengan kursus sebenar M2,SAMPLE,10,Free,https://example.com
-communication,SAMPLE - ganti dengan kursus sebenar M2,SAMPLE,5,Free,https://example.com
+skill_name,course_name,provider,duration,cost_status,date_checked,url
+administrative,Microsoft 365 Fundamentals,Coursera,1-3 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/microsoft-365-fundamentals
+administrative,"Data Entry, Forms, and Automation in Microsoft Access",Coursera,7 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/wiley-data-entry-forms-and-automation-in-microsoft-access
+customer and personal service,Customer Service Foundations,LinkedIn Learning,1 hour 11 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/customer-service-foundations-21620021
+customer and personal service,Microsoft Customer Service (with AI) Professional Certificate,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/microsoft-customer-service-with-ai
+english language,Learn English: Intermediate Grammar Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/intermediate-grammar
+english language,English for Career Development,Coursera,4 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/careerdevelopment
+administration and management,Operations Management,Coursera,2 weeks,Enroll for free,10/22/2026,https://www.coursera.org/learn/fia-operations-management
+administration and management,Management Foundations,LinkedIn Learning,46 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/management-foundations-2019
+computers and electronics,AI For Everyone,Coursera,7 hours,Pricing not stated,10/22/2026,https://www.coursera.org/learn/ai-for-everyone
+computers and electronics,Google AI Essentials Specialization,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/specializations/ai-essentials-google
+computers and electronics,Google Cybersecurity Professional Certificate,Coursera,6 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/google-cybersecurity
+computers and electronics,Digital Literacy: Introduction to Using Computers,Coursera,3 hours,Pricing not stated,10/22/2026,https://www.coursera.org/learn/digital-literacy-introduction-to-using-computers
+computers and electronics,Python for Everybody Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/python
+economics and accounting,Accounting Fundamentals,Coursera,7 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/learn-accounting-fundamentals-corporate-finance
+economics and accounting,Fundamentals of Accounting and Reporting,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/learn/accounting-and-reporting-fundamentals
+personnel and human resources,Talent Management,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/talent-management-hrm
+personnel and human resources,Talent Management,LinkedIn Learning,39 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/talent-management
+law and government,Introduction to English Common Law,Coursera,2 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/intro-common-law
+law and government,"Business Law: Contracts, Liability, and Regulation",Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/business-law-contracts-liability-and-regulation
+education and training,Foundation of Teaching for Learning: Introduction,Coursera,1 week,Pricing not stated,10/22/2026,https://www.coursera.org/learn/teaching
+education and training,Coaching and Developing Employees,LinkedIn Learning,1 hour 25 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/coaching-and-developing-employees-22657884
+public safety and security,Leadership for Public Health Crises,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/specializations/leadership-public-health-crises
+public safety and security,Public Health Leadership,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/specializations/public-health-leadership
+sales and marketing,Google Digital Marketing & E-commerce Professional Certificate,Coursera,6 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce
+sales and marketing,Meta Social Media Marketing Professional Certificate,Coursera,5 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/facebook-social-media-marketing
+active listening,Active Listening: The Secret to Effective Communication,LinkedIn Learning,28 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/active-listening-the-secret-to-effective-communication
+active listening,Empathy for Self and Others,Coursera,6 hours,Subscription,10/22/2026,https://www.coursera.org/learn/empathyforselfandothers
+critical thinking,Google Data Analytics Professional Certificate,Coursera,6 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/google-data-analytics
+critical thinking,Creative Thinking,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/creativethinking
+critical thinking,Design Thinking for Innovation,Coursera,6 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/uva-darden-designbiz
+monitoring,Quality Management Foundations,LinkedIn Learning,1 hour 1 minute,Subscription,10/22/2026,https://www.linkedin.com/learning/quality-management-foundations
+monitoring,Six Sigma Yellow Belt Specialization,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/specializations/six-sigma-fundamentals
+reading comprehension,Learn English: Intermediate Grammar Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/intermediate-grammar
+reading comprehension,Learning How to Learn: Powerful mental tools to help you master tough subjects,Coursera,2 weeks,Enroll for free,10/22/2026,https://www.coursera.org/learn/learning-how-to-learn
+speaking,English for Career Development,Coursera,4 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/careerdevelopment
+speaking,Coaching and Developing Employees,LinkedIn Learning,1 hour 25 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/coaching-and-developing-employees-22657884
+writing,English for Career Development,Coursera,4 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/careerdevelopment
+writing,Learn English: Intermediate Grammar Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/intermediate-grammar
+complex problem solving,Systems Thinking for AI & Automation,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/systems-thinking-for-ai-and-automation
+complex problem solving,Beyond Systems Thinking,edX,6 weeks,Subscription,10/22/2026,https://www.edx.org/learn/social-science/eth-zurich-beyond-systems-thinking-2
+time management,Positive Psychology: Resilience Skills,Coursera,1 week,Enroll for free,10/22/2026,https://www.coursera.org/learn/positive-psychology-resilience
+time management,How Self-Motivation Shapes Personal Success,Coursera,2 weeks,Enroll for free,10/22/2026,https://www.coursera.org/learn/how-self-motivation-shapes-personal-success
+active learning,Learning How to Learn: Powerful mental tools to help you master tough subjects,Coursera,2 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/learning-how-to-learn
+active learning,Lifelong Learning as a Tool for Building Your Career,LinkedIn Learning,33 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/lifelong-learning-as-a-tool-for-building-your-career
+judgment and decision making,Google Data Analytics Professional Certificate,Coursera,6 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/google-data-analytics
+judgment and decision making,Creative Thinking,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/creativethinking
+service orientation,Customer Success Foundations,LinkedIn Learning,50 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/customer-success-foundations
+service orientation,Microsoft Customer Service (with AI) Professional Certificate,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/microsoft-customer-service-with-ai
+social perceptiveness,Leadership Foundations,LinkedIn Learning,1 hour 56 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/leadership-foundations-22307442
+social perceptiveness,Strategic Leadership and Management Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/strategic-leadership
+coordination,Leadership Foundations,LinkedIn Learning,1 hour 56 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/leadership-foundations-22307442
+coordination,Strategic Leadership and Management Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/strategic-leadership
+mathematics,Google Data Analytics Professional Certificate,Coursera,6 months,Enroll for free,10/22/2026,https://www.coursera.org/professional-certificates/google-data-analytics
+mathematics,Data Analytics Essentials,Cisco Networking Academy,30 hours,Free,10/22/2026,https://www.netacad.com/courses/data-analytics-essentials
+negotiation,Leadership Foundations,LinkedIn Learning,1 hour 56 minutes,Enroll for free,10/22/2026,https://www.linkedin.com/learning/leadership-foundations-22307442
+negotiation,Strategic Leadership and Management Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/strategic-leadership
+persuasion,Leadership Foundations,LinkedIn Learning,1 hour 56 minutes,Enroll for free,10/22/2026,https://www.linkedin.com/learning/leadership-foundations-22307442
+persuasion,Strategic Leadership and Management Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/strategic-leadership
+systems analysis,Systems Thinking for AI & Automation,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/systems-thinking-for-ai-and-automation
+systems analysis,Beyond Systems Thinking,edX,6 weeks,Subscription,10/22/2026,https://www.edx.org/learn/social-science/eth-zurich-beyond-systems-thinking-2
+learning strategies,Learning How to Learn: Powerful mental tools to help you master tough subjects,Coursera,2 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/learning-how-to-learn
+learning strategies,Lifelong Learning as a Tool for Building Your Career,LinkedIn Learning,33 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/lifelong-learning-as-a-tool-for-building-your-career
+systems evaluation,Systems Thinking for AI & Automation,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/systems-thinking-for-ai-and-automation
+systems evaluation,Beyond Systems Thinking,edX,6 weeks,Subscription,10/22/2026,https://www.edx.org/learn/social-science/eth-zurich-beyond-systems-thinking-2
+instructing,Foundation of Teaching for Learning: Introduction,Coursera,1 week,Pricing not stated,10/22/2026,https://www.coursera.org/learn/teaching
+instructing,Coaching and Developing Employees,LinkedIn Learning,1 hour 25 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/coaching-and-developing-employees-22657884
+management of personnel resources,Talent Management,Coursera,4 hours,Enroll for free,10/22/2026,https://www.coursera.org/learn/talent-management-hrm
+management of personnel resources,Strategic Leadership and Management Specialization,Coursera,2 months,Enroll for free,10/22/2026,https://www.coursera.org/specializations/strategic-leadership
+management of financial resources,Operations Management,Coursera,2 weeks,Enroll for free,10/22/2026,https://www.coursera.org/learn/fia-operations-management
+management of financial resources,Management Foundations,LinkedIn Learning,46 minutes,Subscription,10/22/2026,https://www.linkedin.com/learning/management-foundations-2019
+mathematics (knowledge),Precalculus through Data and Modelling Specialization,Coursera,4 weeks,Enroll for free,10/22/2026,https://www.coursera.org/specializations/precalculus-data-modelling
+mathematics (knowledge),Introduction to Mathematical Thinking,Coursera,4 weeks,Pricing not stated,10/22/2026,https://www.coursera.org/learn/mathematical-thinking
