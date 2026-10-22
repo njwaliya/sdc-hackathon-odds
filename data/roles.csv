@@ -1,11 +1,231 @@
 role_id,role_name,role_type,skill_name,skill_type,importance,related_roles,source_url
-43-3051.00,Payroll and Timekeeping Clerks,current,mathematics,skill,50,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
-43-3051.00,Payroll and Timekeeping Clerks,current,mathematics (knowledge),knowledge,75,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
-43-3051.00,Payroll and Timekeeping Clerks,current,excel,skill,70,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
-43-3051.00,Payroll and Timekeeping Clerks,current,communication,skill,60,43-3031.00;13-1071.00,https://www.onetonline.org/link/details/43-3051.00
-13-1071.00,Human Resources Specialists,future,communication,skill,85,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
-13-1071.00,Human Resources Specialists,future,employee relations,skill,80,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
-13-1071.00,Human Resources Specialists,future,excel,skill,45,43-3051.00,https://www.onetonline.org/link/details/13-1071.00
-43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,mathematics (knowledge),knowledge,80,43-3051.00,https://www.onetonline.org/link/details/43-3031.00
-43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,excel,skill,75,43-3051.00,https://www.onetonline.org/link/details/43-3031.00
-43-3031.00,Bookkeeping Accounting and Auditing Clerks,future,accounting software,skill,70,43-3051.00,https://www.onetonline.org/link/details/43-3031.00
+43-3051.00,Payroll and Timekeeping Clerks,current,reading comprehension,skill,72,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,active listening,skill,69,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,mathematics,skill,56,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,critical thinking,skill,53,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,speaking,skill,53,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,writing,skill,53,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,complex problem solving,skill,50,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,monitoring,skill,50,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,service orientation,skill,50,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,administrative,knowledge,87,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,english language,knowledge,80,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,mathematics (knowledge),knowledge,80,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,economics and accounting,knowledge,77,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,personnel and human resources,knowledge,73,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,administration and management,knowledge,71,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,customer and personal service,knowledge,55,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3051.00,Payroll and Timekeeping Clerks,current,computers and electronics,knowledge,54,43-3031.00;43-4161.00;13-1071.00;13-1141.00;13-2011.00;13-2031.00;43-1011.00;11-3012.00;11-3031.00,https://www.onetonline.org/link/details/43-3051.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,mathematics,skill,60,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,active listening,skill,56,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,critical thinking,skill,56,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,reading comprehension,skill,56,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,speaking,skill,53,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,writing,skill,53,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,monitoring,skill,50,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,time management,skill,50,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,customer and personal service,knowledge,80,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,administrative,knowledge,72,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,mathematics (knowledge),knowledge,71,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,economics and accounting,knowledge,59,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,english language,knowledge,59,,https://www.onetonline.org/link/details/43-3031.00
+43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",future,computers and electronics,knowledge,54,,https://www.onetonline.org/link/details/43-3031.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,active listening,skill,75,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,reading comprehension,skill,75,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,speaking,skill,69,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,writing,skill,63,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,critical thinking,skill,60,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,monitoring,skill,60,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,social perceptiveness,skill,60,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,time management,skill,53,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,active learning,skill,50,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,complex problem solving,skill,50,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,coordination,skill,50,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,judgment and decision making,skill,50,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,service orientation,skill,50,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,personnel and human resources,knowledge,85,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,administrative,knowledge,78,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,customer and personal service,knowledge,69,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,administration and management,knowledge,62,,https://www.onetonline.org/link/details/43-4161.00
+43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",future,english language,knowledge,61,,https://www.onetonline.org/link/details/43-4161.00
+13-1071.00,Human Resources Specialists,future,speaking,skill,78,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,active listening,skill,75,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,reading comprehension,skill,75,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,critical thinking,skill,72,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,writing,skill,72,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,service orientation,skill,60,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,social perceptiveness,skill,60,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,active learning,skill,56,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,judgment and decision making,skill,56,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,complex problem solving,skill,53,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,instructing,skill,53,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,coordination,skill,50,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,learning strategies,skill,50,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,monitoring,skill,50,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,negotiation,skill,50,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,time management,skill,50,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,personnel and human resources,knowledge,91,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,administrative,knowledge,74,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,administration and management,knowledge,71,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,english language,knowledge,70,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,customer and personal service,knowledge,62,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,law and government,knowledge,58,,https://www.onetonline.org/link/details/13-1071.00
+13-1071.00,Human Resources Specialists,future,education and training,knowledge,52,,https://www.onetonline.org/link/details/13-1071.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,active listening,skill,72,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,reading comprehension,skill,72,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,speaking,skill,72,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,critical thinking,skill,69,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,active learning,skill,60,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,writing,skill,60,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,complex problem solving,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,judgment and decision making,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,mathematics,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,monitoring,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,systems analysis,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,systems evaluation,skill,53,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,coordination,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,negotiation,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,persuasion,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,service orientation,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,social perceptiveness,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,time management,skill,50,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,personnel and human resources,knowledge,81,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,english language,knowledge,74,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,customer and personal service,knowledge,70,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,mathematics (knowledge),knowledge,69,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,administration and management,knowledge,64,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,economics and accounting,knowledge,56,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,administrative,knowledge,55,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,computers and electronics,knowledge,51,,https://www.onetonline.org/link/details/13-1141.00
+13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",future,law and government,knowledge,50,,https://www.onetonline.org/link/details/13-1141.00
+13-2011.00,Accountants and Auditors,future,reading comprehension,skill,72,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,active listening,skill,63,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,complex problem solving,skill,63,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,critical thinking,skill,63,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,judgment and decision making,skill,63,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,writing,skill,63,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,mathematics,skill,60,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,speaking,skill,60,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,active learning,skill,56,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,monitoring,skill,56,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,social perceptiveness,skill,56,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,persuasion,skill,53,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,service orientation,skill,53,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,time management,skill,53,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,coordination,skill,50,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,economics and accounting,knowledge,85,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,english language,knowledge,66,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,mathematics (knowledge),knowledge,62,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,law and government,knowledge,59,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,administration and management,knowledge,58,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,customer and personal service,knowledge,57,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,administrative,knowledge,56,,https://www.onetonline.org/link/details/13-2011.00
+13-2011.00,Accountants and Auditors,future,computers and electronics,knowledge,54,,https://www.onetonline.org/link/details/13-2011.00
+13-2031.00,Budget Analysts,future,critical thinking,skill,72,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,mathematics,skill,72,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,active listening,skill,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,complex problem solving,skill,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,judgment and decision making,skill,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,reading comprehension,skill,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,speaking,skill,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,management of financial resources,skill,60,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,active learning,skill,56,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,monitoring,skill,53,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,systems analysis,skill,53,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,writing,skill,53,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,social perceptiveness,skill,50,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,systems evaluation,skill,50,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,time management,skill,50,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,economics and accounting,knowledge,86,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,mathematics (knowledge),knowledge,76,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,english language,knowledge,73,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,administration and management,knowledge,69,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,administrative,knowledge,60,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,computers and electronics,knowledge,59,,https://www.onetonline.org/link/details/13-2031.00
+13-2031.00,Budget Analysts,future,customer and personal service,knowledge,56,,https://www.onetonline.org/link/details/13-2031.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,active listening,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,coordination,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,monitoring,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,reading comprehension,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,social perceptiveness,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,speaking,skill,75,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,critical thinking,skill,72,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,active learning,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,instructing,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,judgment and decision making,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,management of personnel resources,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,time management,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,writing,skill,69,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,learning strategies,skill,66,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,negotiation,skill,66,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,persuasion,skill,66,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,service orientation,skill,66,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,complex problem solving,skill,60,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,systems evaluation,skill,53,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,systems analysis,skill,50,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,administration and management,knowledge,87,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,customer and personal service,knowledge,81,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,administrative,knowledge,68,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,english language,knowledge,68,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,computers and electronics,knowledge,57,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,personnel and human resources,knowledge,54,,https://www.onetonline.org/link/details/43-1011.00
+43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,future,economics and accounting,knowledge,53,,https://www.onetonline.org/link/details/43-1011.00
+11-3012.00,Administrative Services Managers,future,active listening,skill,75,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,reading comprehension,skill,75,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,time management,skill,75,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,speaking,skill,72,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,coordination,skill,69,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,critical thinking,skill,69,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,writing,skill,69,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,negotiation,skill,66,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,management of personnel resources,skill,60,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,monitoring,skill,60,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,complex problem solving,skill,56,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,judgment and decision making,skill,56,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,service orientation,skill,56,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,social perceptiveness,skill,56,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,active learning,skill,53,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,systems analysis,skill,53,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,instructing,skill,50,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,learning strategies,skill,50,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,persuasion,skill,50,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,customer and personal service,knowledge,86,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,administration and management,knowledge,81,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,english language,knowledge,76,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,administrative,knowledge,73,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,computers and electronics,knowledge,59,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,personnel and human resources,knowledge,59,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,mathematics (knowledge),knowledge,57,,https://www.onetonline.org/link/details/11-3012.00
+11-3012.00,Administrative Services Managers,future,public safety and security,knowledge,57,,https://www.onetonline.org/link/details/11-3012.00
+11-3031.00,Financial Managers,future,active listening,skill,75,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,critical thinking,skill,75,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,reading comprehension,skill,75,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,speaking,skill,75,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,monitoring,skill,69,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,writing,skill,69,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,complex problem solving,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,coordination,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,judgment and decision making,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,management of personnel resources,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,service orientation,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,social perceptiveness,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,time management,skill,66,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,active learning,skill,63,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,mathematics,skill,63,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,persuasion,skill,60,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,management of financial resources,skill,53,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,negotiation,skill,53,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,learning strategies,skill,50,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,systems analysis,skill,50,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,systems evaluation,skill,50,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,customer and personal service,knowledge,92,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,administration and management,knowledge,83,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,economics and accounting,knowledge,77,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,administrative,knowledge,68,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,mathematics (knowledge),knowledge,68,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,law and government,knowledge,65,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,personnel and human resources,knowledge,63,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,sales and marketing,knowledge,59,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,english language,knowledge,58,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,education and training,knowledge,57,,https://www.onetonline.org/link/details/11-3031.00
+11-3031.00,Financial Managers,future,computers and electronics,knowledge,56,,https://www.onetonline.org/link/details/11-3031.00
