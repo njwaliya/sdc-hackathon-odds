@@ -84,7 +84,7 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 
 | Name | Role | GitHub |
 |---|---|---|
-| Nur Faqiah Binti Mohd Noh | Team Lead — coordination, documentation, and integration | [@yourusername](https://github.com/yourusername) |
+| Nur Faqiah Binti Mohd Noh | Team Lead — coordination, documentation, and integration | [@faa23-bit](https://github.com/faa23-bit) |
 | Nur Zaidatul Akma Binti Ramle | M1 — role and SDG data | [@akmaramle05](https://github.com/akmaramle05) |
 | Farisha Ayuni Binti Mohd Anuar | M2 — trend and course data | [@farishaayuni](https://github.com/farishaayuni) |
 | Nur Najwa Alieya Binti Romzi | M3 — Python/Flask backend | [@njwaliya](https://github.com/njwaliya) |
