@@ -54,10 +54,9 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 
 | Layer         | Technology                   |
 | ------------- | ---------------------------- |
-| Frontend      | e.g. HTML, React             |
-| Backend       | e.g. Python, Flask / FastAPI |
-| Database      | e.g. PostgreSQL, SQLite      |
-| AI / Compute  | RunPod (GPU)                 |
+| Frontend      | HTML, CSS, JavaScript             |
+| Backend       | Python/Flask backend |
+| AI / Compute  | Replit,Claude,Gemini,ChatGpt                 |
 | Hosting / Dev | Replit                       |
 
 ---
