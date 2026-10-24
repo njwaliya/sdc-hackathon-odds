@@ -68,7 +68,7 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 - **Hosting:** The frontend and integrated backend are deployed on Replit. The live prototype is available at the link above.
 - **Secrets:** The prototype does not currently use external API keys.
 
-**Proof of use:** 
+**Proof of use:** CDC2026_ODDS_Replit_POU.pdf
 
 ## Challenges & Learnings
 
