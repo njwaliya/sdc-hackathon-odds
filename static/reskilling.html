@@ -7,11 +7,7 @@
   <title>FuturePath AI | Learning Pathway</title>
 
   <style>
-    /* ==========================================================
-       DESIGN TOKENS
-       Same colours as the Dashboard and Role Matching pages, so
-       all FuturePath pages share one theme.
-       ========================================================== */
+    /* Design tokens: same theme as Dashboard and Role Matching */
     :root {
       --purple: #6d28d9;
       --light-purple: #a855f7;
@@ -21,9 +17,7 @@
       --border: #eee8f7;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -32,20 +26,12 @@
       color: var(--text);
     }
 
-    button {
-      font: inherit;
-      cursor: pointer;
-    }
+    button { font: inherit; cursor: pointer; }
 
-    /* Make the "hidden" attribute always win, even on elements that
-       set their own display value (grid / flex). */
-    [hidden] {
-      display: none !important;
-    }
+    /* "hidden" must always win, even on grid/flex elements */
+    [hidden] { display: none !important; }
 
-    /* ==========================================================
-       SIDEBAR NAVIGATION
-       ========================================================== */
+    /* Sidebar */
     .sidebar {
       position: fixed;
       inset: 0 auto 0 0;
@@ -57,25 +43,10 @@
       transition: transform .25s;
       z-index: 10;
     }
+    .sidebar.hidden { transform: translateX(-100%); }
 
-    /* Desktop: the hamburger button adds this class to hide the sidebar. */
-    .sidebar.hidden {
-      transform: translateX(-100%);
-    }
-
-    .brand {
-      font-size: 21px;
-      font-weight: 700;
-      margin: 0 10px 35px;
-    }
-
-    .brand small {
-      display: block;
-      margin-top: 7px;
-      color: #e9d5ff;
-      font-size: 11px;
-      font-weight: 400;
-    }
+    .brand { font-size: 21px; font-weight: 700; margin: 0 10px 35px; }
+    .brand small { display: block; margin-top: 7px; color: #e9d5ff; font-size: 11px; font-weight: 400; }
 
     .nav a {
       display: block;
@@ -86,45 +57,20 @@
       text-decoration: none;
       font-size: 13px;
     }
+    .nav a:hover, .nav a.active { background: #ffffff30; color: white; }
 
-    .nav a:hover,
-    .nav a.active {
-      background: #ffffff30;
-      color: white;
-    }
+    /* Main area */
+    .main { margin-left: 245px; padding: 25px 32px 40px; transition: margin .25s; }
+    .main.expanded { margin-left: 0; }
 
-    /* ==========================================================
-       MAIN AREA
-       ========================================================== */
-    .main {
-      margin-left: 245px;
-      padding: 25px 32px 40px;
-      transition: margin .25s;
-    }
-
-    .main.expanded {
-      margin-left: 0;
-    }
-
-    /* Shared flex row layout. */
-    .topbar,
-    .top-left,
-    .section-heading,
-    .card-top,
-    .role-banner {
+    .topbar, .top-left, .section-heading, .card-top, .role-banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
     }
-
-    .topbar {
-      margin-bottom: 28px;
-    }
-
-    .top-left {
-      justify-content: flex-start;
-    }
+    .topbar { margin-bottom: 28px; }
+    .top-left { justify-content: flex-start; }
 
     .menu-button {
       background: white;
@@ -135,40 +81,13 @@
       font-size: 17px;
     }
 
-    .breadcrumb {
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
+    .breadcrumb { color: var(--muted); font-size: 12px; margin-bottom: 5px; }
+    .eyebrow { color: var(--purple); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; }
+    h1 { font-size: 29px; margin: 10px 0; }
+    .subtitle { color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 25px; }
+    .muted { color: var(--muted); font-size: 12px; }
 
-    .eyebrow {
-      color: var(--purple);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-    }
-
-    h1 {
-      font-size: 29px;
-      margin: 10px 0;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* ==========================================================
-       SELECTED ROLE BANNER
-       Filled from the role chosen on the Role Matching page.
-       ========================================================== */
+    /* Selected role banner */
     .role-banner {
       background: linear-gradient(120deg, #5b21b6, #a855f7);
       color: white;
@@ -176,26 +95,9 @@
       padding: 25px;
       margin-bottom: 22px;
     }
-
-    .role-banner small {
-      display: block;
-      color: #ede9fe;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-
-    .role-banner h2 {
-      font-size: 24px;
-      margin: 0 0 8px;
-    }
-
-    .role-banner p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
-      color: #f3e8ff;
-    }
+    .role-banner small { display: block; color: #ede9fe; font-size: 11px; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .role-banner h2 { font-size: 24px; margin: 0 0 8px; }
+    .role-banner p { margin: 0; font-size: 13px; line-height: 1.5; color: #f3e8ff; }
 
     .banner-score {
       min-width: 105px;
@@ -205,20 +107,10 @@
       border-radius: 15px;
       padding: 17px 12px;
     }
+    .banner-score strong { display: block; font-size: 27px; }
+    .banner-score span { font-size: 11px; color: #f3e8ff; }
 
-    .banner-score strong {
-      display: block;
-      font-size: 27px;
-    }
-
-    .banner-score span {
-      font-size: 11px;
-      color: #f3e8ff;
-    }
-
-    /* ==========================================================
-       CARDS (progress, stages, tip, goals)
-       ========================================================== */
+    /* Cards */
     .card {
       background: white;
       border: 1px solid var(--border);
@@ -227,199 +119,55 @@
       margin-bottom: 22px;
       box-shadow: 0 5px 20px #3b076408;
     }
+    .section-heading { margin-bottom: 18px; }
+    .section-heading h2 { font-size: 16px; margin: 0; }
 
-    .section-heading {
-      margin-bottom: 18px;
-    }
-
-    .section-heading h2 {
-      font-size: 16px;
-      margin: 0;
-    }
-
-    /* Overall progress bar. */
-    .progress-track {
-      height: 10px;
-      background: #eee8f7;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 13px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #7c3aed, #c084fc);
-      border-radius: 20px;
-      transition: width .3s ease;
-    }
-
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* Two-column grid of learning stages. */
-    .pathway {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
+    .pathway { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 
     .learning-card {
       border: 1px solid var(--border);
       border-radius: 13px;
       padding: 18px;
+      min-width: 0;
       transition: border-color .2s, background .2s;
     }
+    .learning-card:hover { border-color: #c4b5fd; }
 
-    .learning-card:hover {
-      border-color: #c4b5fd;
-    }
+    .card-top { margin-bottom: 12px; }
+    .step { font-size: 11px; color: var(--purple); background: #f3e8ff; padding: 6px 9px; border-radius: 20px; }
 
-    /* Applied when the user ticks "Mark this stage as completed". */
-    .learning-card.done {
-      background: #fcfaff;
-      border-color: #8b5cf6;
-    }
+    .learning-card h3 { font-size: 15px; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .learning-card p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0 0 14px; }
 
-    .learning-card.done h3 {
-      color: #7b6c9e;
-    }
+    .skill-tag { font-size: 11px; background: #f3f0f9; color: #6d5b85; border-radius: 6px; padding: 6px 8px; }
 
-    .card-top {
-      margin-bottom: 12px;
-    }
+    /* Priority badge colours */
+    .high { background: #fee2e2; color: #b91c1c; }
+    .medium { background: #fef3c7; color: #92400e; }
+    .low { background: #dcfce7; color: #166534; }
 
-    .step {
+    /* SDG tags: role level (main) and skill level (only mapped skills) */
+    .sdg-badge {
+      display: inline-block;
       font-size: 11px;
-      color: var(--purple);
-      background: #f3e8ff;
-      padding: 6px 9px;
-      border-radius: 20px;
-    }
-
-    .duration {
-      font-size: 11px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .learning-card h3 {
-      font-size: 15px;
-      margin: 0 0 8px;
-      overflow-wrap: anywhere;
-    }
-
-    .learning-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0 0 14px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .skill-tag {
-      font-size: 11px;
-      background: #f3f0f9;
-      color: #6d5b85;
+      background: #e0f2fe;
+      color: #075985;
       border-radius: 6px;
       padding: 6px 8px;
-    }
-
-    /* Priority badge colours (high / medium / low). */
-    .high {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-
-    .medium {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .low {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .resource {
-      display: inline-block;
-      color: var(--purple);
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      margin-bottom: 14px;
-    }
-
-    .resource:hover {
-      text-decoration: underline;
-    }
-
-    .resource-provider {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 400;
-      margin-top: 3px;
-    }
-
-    .complete-label {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      border-top: 1px solid var(--border);
-      padding-top: 13px;
-      color: #554d6c;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .complete-label input {
-      accent-color: var(--purple);
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-
-    /* List of courses / certificates inside one skill stage. */
-    .course-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .course-row {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-      background: #fdfcff;
-    }
-
-    .course-name {
-      font-size: 13px;
-      font-weight: 700;
-      margin: 0 0 4px;
       overflow-wrap: anywhere;
     }
+    .sdg-badge a { color: inherit; text-decoration: none; font-weight: 700; }
+    .sdg-badge a:hover { text-decoration: underline; }
 
-    /* Provider and duration line, e.g. "Coursera · ~4 weeks". */
-    .course-meta {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 9px;
-    }
+    .sdg-reason { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 6px; overflow-wrap: anywhere; }
+    .stage-sdg { margin-bottom: 12px; }
+    .stage-sdg .sdg-reason { font-size: 11px; margin: 4px 0 8px; }
 
+    /* Courses / certificates inside one skill stage */
+    .course-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+    .course-row { border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: #fdfcff; }
+    .course-name { font-size: 13px; font-weight: 700; margin: 0 0 4px; overflow-wrap: anywhere; }
+    .course-meta { font-size: 11px; color: var(--muted); margin-bottom: 9px; overflow-wrap: anywhere; }
     .course-link {
       display: inline-block;
       color: white;
@@ -430,159 +178,41 @@
       font-weight: 700;
       text-decoration: none;
     }
+    .course-link:hover { background: #5b21b6; }
 
-    .course-link:hover {
-      background: #5b21b6;
-    }
+    .no-course { font-size: 12px; color: var(--muted); background: #f8f6fc; border-radius: 9px; padding: 11px; margin-bottom: 14px; }
 
-    /* Shown when no course was found for a skill. */
-    .no-course {
-      font-size: 12px;
-      color: var(--muted);
-      background: #f8f6fc;
-      border-radius: 9px;
-      padding: 11px;
-      margin-bottom: 14px;
-    }
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .tip { background: #f5f0ff; border-radius: 12px; padding: 16px; font-size: 13px; line-height: 1.7; color: #5b21b6; }
 
-    /* Tip + goals sit side by side. */
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+    .goal-list { list-style: none; margin: 0; padding: 0; }
+    .goal-list li { font-size: 13px; margin: 12px 0; line-height: 1.5; }
+    .goal-list li::before { content: "✓"; color: var(--purple); font-weight: 700; margin-right: 10px; }
 
-    .tip {
-      background: #f5f0ff;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 13px;
-      line-height: 1.7;
-      color: #5b21b6;
-    }
+    /* Status box (empty / error state) */
+    .status { padding: 14px; border-radius: 10px; background: #f5f0ff; color: #5b21b6; font-size: 12px; line-height: 1.6; margin: 12px 0 22px; }
+    .status.error { background: #fff1f2; color: #be123c; }
+    .status a { color: inherit; font-weight: 700; }
 
-    .goal-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    .footer-note { text-align: center; color: var(--muted); font-size: 11px; line-height: 1.6; margin-top: 22px; }
 
-    .goal-list li {
-      font-size: 13px;
-      margin: 12px 0;
-      line-height: 1.5;
-    }
-
-    .goal-list li::before {
-      content: "✓";
-      color: var(--purple);
-      font-weight: 700;
-      margin-right: 10px;
-    }
-
-    /* Status box (empty / error state). */
-    .status {
-      padding: 14px;
-      border-radius: 10px;
-      background: #f5f0ff;
-      color: #5b21b6;
-      font-size: 12px;
-      line-height: 1.6;
-      margin: 12px 0 22px;
-    }
-
-    .status.error {
-      background: #fff1f2;
-      color: #be123c;
-    }
-
-    .status a {
-      color: inherit;
-      font-weight: 700;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 8px;
-    }
-
-    .button {
-      border-radius: 9px;
-      padding: 13px 17px;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid #ddd6fe;
-      background: white;
-      color: var(--purple);
-      text-decoration: none;
-    }
-
-    .footer-note {
-      text-align: center;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.6;
-      margin-top: 22px;
-    }
-
-    /* ==========================================================
-       RESPONSIVE LAYOUT
-       ========================================================== */
     @media (max-width: 950px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-
-      .sidebar.open {
-        transform: translateX(0);
-      }
-
-      .main {
-        margin-left: 0;
-        padding: 20px;
-      }
-
-      .pathway,
-      .bottom-grid {
-        grid-template-columns: 1fr;
-      }
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; padding: 20px; }
+      .pathway, .bottom-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 580px) {
-      .main {
-        padding: 15px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .card {
-        padding: 16px;
-      }
-
-      .role-banner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .button {
-        text-align: center;
-      }
+      .main { padding: 15px; }
+      h1 { font-size: 24px; }
+      .card { padding: 16px; }
+      .role-banner { align-items: flex-start; flex-direction: column; }
     }
   </style>
 </head>
 
 <body>
-  <!-- ==========================================================
-       SIDEBAR
-       ========================================================== -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       ✦ FuturePath
@@ -592,14 +222,12 @@
     <nav class="nav">
       <a href="/dashboard.html">⌂ &nbsp; Dashboard</a>
       <a href="/rolematching.html">◎ &nbsp; Role Matching</a>
-      <!-- "active" marks the page the user is currently on. -->
       <a class="active" href="/reskilling.html">♧ &nbsp; Learning Pathway</a>
       <a href="/">⇥ &nbsp; Upload CV</a>
     </nav>
   </aside>
 
   <main class="main" id="main">
-    <!-- Top bar: hamburger + breadcrumb. -->
     <div class="topbar">
       <div class="top-left">
         <button class="menu-button" type="button" onclick="toggleSidebar()" aria-label="Toggle navigation">☰</button>
@@ -617,15 +245,11 @@
       Track your learning progress as you complete each stage.
     </p>
 
-    <!-- Shown when there is no selected role or the data is unusable.
-         It stays hidden when everything loads correctly. -->
+    <!-- Empty / error message; hidden when everything loads -->
     <div id="pageStatus" class="status" role="status" aria-live="polite" hidden></div>
 
-    <!-- Everything below is only shown once a role has been loaded. -->
     <div id="pathwayContent" hidden>
 
-      <!-- SELECTED ROLE BANNER (role name, description and score all come
-           from the role saved by the Role Matching page). -->
       <section class="role-banner">
         <div>
           <small>YOUR SELECTED CAREER</small>
@@ -633,31 +257,12 @@
           <p id="roleDescription" hidden></p>
         </div>
 
-        <!-- The score box is hidden if the backend sent no score. -->
         <div class="banner-score" id="scoreBox" hidden>
           <strong id="matchScore"></strong>
           <span>Current match</span>
         </div>
       </section>
 
-      <!-- OVERALL PROGRESS (numbers are calculated from the checkboxes) -->
-      <section class="card">
-        <div class="section-heading">
-          <h2>Learning progress</h2>
-          <span class="muted" id="progressPercent">0% completed</span>
-        </div>
-
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <div class="progress-info">
-          <span id="completedText"></span>
-          <span id="remainingText"></span>
-        </div>
-      </section>
-
-      <!-- LEARNING STAGES (cards are built by renderStages()) -->
       <section class="card">
         <div class="section-heading">
           <h2>Recommended learning path</h2>
@@ -667,7 +272,6 @@
         <div class="pathway" id="pathway"></div>
       </section>
 
-      <!-- TIP + GOALS (both are generated from the loaded stages/skill gaps) -->
       <div class="bottom-grid">
         <section class="card">
           <div class="section-heading">
@@ -686,58 +290,46 @@
 
       <p class="footer-note" id="footerNote"></p>
     </div>
-
   </main>
 
   <script>
     /*
-     * ==========================================================
-     * LEARNING PATHWAY PAGE: SCRIPT OVERVIEW
-     * ==========================================================
-     * 1. Read the role the user picked on the Role Matching page
-     *    ("selectedCareerRole" in sessionStorage). That object is the
-     *    role returned by the backend (/api/match).
-     * 2. Turn it into learning stages. ONE STAGE PER SUGGESTED SKILL
-     *    (role.skill_gap). The courses for that skill (role.pathway items
-     *    whose skill matches) are listed inside the stage, each with:
-     *      - how long it takes (duration)
-     *      - a link to take the course and get the certificate
-     *    Pathway items that match no skill get a stage of their own.
-     * 3. Show progress, a next-step tip and goals, all calculated
-     *    from those stages.
-     * 4. Remember which stages were ticked in this browser.
+     * HOW THIS PAGE WORKS
+     * 1. Reads the role saved by Role Matching ("selectedCareerRole" in
+     *    sessionStorage = the role object from /api/match).
+     * 2. role.pathway from the backend is a list of steps:
+     *      { skill, importance, courses: [...], sdg: [...] }
+     *    flattenPathway() turns it into a flat course list, each course
+     *    tagged with its skill.
+     * 3. buildStages() makes ONE STAGE PER SKILL: first the skills in
+     *    role.skill_gap, then any pathway step whose skill is not in the
+     *    gap list, then any leftover course as its own stage.
+     * 4. The next step and goals are calculated from those stages.
      */
 
-    // ----------------------------------------------------------
-    // PAGE STATE
-    // ----------------------------------------------------------
-    let currentRole = null;   // the role object saved by Role Matching
-    let stages = [];          // list of learning stages built from that role
+    let currentRole = null;   // role object saved by Role Matching
+    let stages = [];          // learning stages built from that role
 
-    // ----------------------------------------------------------
-    // SMALL HELPERS
-    // ----------------------------------------------------------
+    // ---------- helpers ----------
 
-    // Escape text before putting backend data into HTML, so special
-    // characters are shown as text and never run as markup.
+    // Escape backend text before putting it into HTML.
     function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>"']/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
       })[character]);
     }
 
-    // Turn any value into a list so we can loop over it safely.
+    // Turn any value into a list so it can be looped safely.
     function asList(value) {
       if (Array.isArray(value)) return value;
       if (value === undefined || value === null || value === "") return [];
       return [value];
     }
 
-    // Open or close the sidebar (drawer on mobile, collapse on desktop).
+    function normalise(text) {
+      return String(text ?? "").trim().toLowerCase();
+    }
+
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       const main = document.getElementById("main");
@@ -750,8 +342,7 @@
       }
     }
 
-    // Show a message in the status box. The "message" may contain a link,
-    // so only pass trusted, hard-coded text here (never backend data).
+    // Only pass trusted, hard-coded text here (never backend data).
     function showStatus(messageHTML, isError = false) {
       const status = document.getElementById("pageStatus");
       status.innerHTML = messageHTML;
@@ -759,49 +350,75 @@
       status.hidden = false;
     }
 
-    // ----------------------------------------------------------
-    // READING THE SELECTED ROLE
-    // ----------------------------------------------------------
+    // ---------- reading the selected role ----------
 
-    // Read the role saved by rolematching.html.
-    // Returns the role object, or null if nothing valid was saved.
-    function getSelectedRole() {
-      try {
-        const raw = sessionStorage.getItem("selectedCareerRole");
-        if (!raw) return null;
+    // Keys Role Matching might use to save the chosen role.
+    const ROLE_KEYS = [
+      "selectedCareerRole", "selectedRole", "selected_role", "selectedCareer",
+      "careerRole", "targetRole", "chosenRole"
+    ];
 
-        const role = JSON.parse(raw);
-        return role && typeof role === "object" ? role : null;
-      } catch (error) {
-        // Corrupt JSON or blocked storage: treat as "no role selected".
-        console.error("Could not read the selected role:", error);
-        return null;
-      }
+    function looksLikeRole(obj) {
+      return obj && typeof obj === "object" && !Array.isArray(obj) &&
+        ("skill_gap" in obj || "pathway" in obj || "role_name" in obj || "title" in obj);
     }
 
-    // Role name. The backend may use different field names, so check several.
+    function parseJSON(raw) {
+      try { return JSON.parse(raw); } catch (error) { return null; }
+    }
+
+    // Read the role saved by rolematching.html. Looks in sessionStorage first,
+    // then localStorage (sessionStorage is per tab, so a role chosen in another
+    // tab or preview window is only visible through localStorage).
+    function getSelectedRole() {
+      for (const storage of [sessionStorage, localStorage]) {
+        try {
+          // 1. The known keys.
+          for (const key of ROLE_KEYS) {
+            const role = parseJSON(storage.getItem(key));
+            if (looksLikeRole(role)) return role;
+          }
+
+          // 2. Any saved object that looks like a matched role.
+          for (let i = 0; i < storage.length; i++) {
+            const role = parseJSON(storage.getItem(storage.key(i)));
+            if (looksLikeRole(role) && ("skill_gap" in role || "pathway" in role)) return role;
+          }
+        } catch (error) {
+          console.error("Could not read the selected role:", error);
+        }
+      }
+      return null;
+    }
+
+    // Names of everything saved in this browser, to help find the right key.
+    function listStoredKeys() {
+      const out = [];
+      for (const [label, storage] of [["session", sessionStorage], ["local", localStorage]]) {
+        try {
+          for (let i = 0; i < storage.length; i++) out.push(`${label}:${storage.key(i)}`);
+        } catch (error) { /* storage blocked */ }
+      }
+      return out;
+    }
+
     function getRoleName(role) {
       return role.role_name || role.title || role.name || "Selected role";
     }
 
-    // Match score as a percentage (0-100), or null if none was sent.
-    // Same logic as the Role Matching page, so both pages always agree.
+    // Match score as 0-100, or null if none was sent (same logic as Role Matching).
     function getRoleScore(role) {
       const rawScore = role.score ?? role.match_score ?? role.fit_score;
-
-      if (rawScore === undefined || rawScore === null || rawScore === "") {
-        return null;
-      }
+      if (rawScore === undefined || rawScore === null || rawScore === "") return null;
 
       const score = Number(rawScore);
       if (!Number.isFinite(score)) return null;
 
-      // 0-1 is treated as a fraction (0.35 -> 35%), larger as a percentage.
       const percent = score >= 0 && score <= 1 ? score * 100 : score;
       return Math.max(0, Math.min(100, percent));
     }
 
-    // Get a display name from a skill that may be a string or an object.
+    // A skill may be a string or an object.
     function getSkillName(skill) {
       if (skill && typeof skill === "object") {
         return skill.skill_name || skill.skill || skill.name || "";
@@ -809,38 +426,89 @@
       return skill ? String(skill) : "";
     }
 
-    // ----------------------------------------------------------
-    // BUILDING THE LEARNING STAGES FROM BACKEND DATA
-    // ----------------------------------------------------------
+    // Priority can be a word ("high") or a number from the backend
+    // (importance 0-100, or 0-1). Numbers become high / medium / low.
+    function normalisePriority(value) {
+      if (value === undefined || value === null || value === "") return "";
 
-    // Lower-case and trim text so skill names can be compared safely.
-    function normalise(text) {
-      return String(text ?? "").trim().toLowerCase();
+      const n = Number(value);
+      if (Number.isFinite(n)) {
+        const percent = n <= 1 ? n * 100 : n;
+        return percent >= 80 ? "high" : percent >= 60 ? "medium" : "low";
+      }
+      return String(value).trim();
     }
 
-    // Work out how long a course takes, as readable text such as "~4 weeks".
-    // The backend may send it in several ways, so we check each one:
-    //   - text:            duration: "4 weeks"
-    //   - number + unit:   duration: 4, duration_unit: "weeks"
-    //   - dedicated field: duration_weeks / duration_hours / ...
-    // A bare number with no unit is NOT shown, because we cannot tell
-    // whether it means hours, weeks or months. Returns "" if unknown.
+    // ---------- SDG tags ----------
+    // Official UN names, used only when the backend sends just "SDG 8".
+    const SDG_NAMES = {
+      1: "No Poverty", 2: "Zero Hunger", 3: "Good Health and Well-being",
+      4: "Quality Education", 5: "Gender Equality", 6: "Clean Water and Sanitation",
+      7: "Affordable and Clean Energy", 8: "Decent Work and Economic Growth",
+      9: "Industry, Innovation and Infrastructure", 10: "Reduced Inequalities",
+      11: "Sustainable Cities and Communities", 12: "Responsible Consumption and Production",
+      13: "Climate Action", 14: "Life Below Water", 15: "Life on Land",
+      16: "Peace, Justice and Strong Institutions", 17: "Partnerships for the Goals"
+    };
+
+    // One SDG entry from the backend (sdg_map.csv row) -> { number, name, reason, source }.
+    // Accepts "SDG 8", { sdg: "SDG 8", reason }, or { sdg_number: 8, sdg_name, reason }.
+    function normaliseSDG(entry) {
+      if (entry === undefined || entry === null || entry === "") return null;
+
+      const obj = typeof entry === "object" ? entry : { sdg: entry };
+      const text = String(obj.sdg ?? obj.sdg_label ?? obj.sdg_number ?? obj.number ?? "");
+      const match = text.match(/\d{1,2}/);
+      const number = match ? Number(match[0]) : 0;
+      if (number < 1 || number > 17) return null;
+
+      return {
+        number,
+        name: String(obj.sdg_name || "").trim() || SDG_NAMES[number],
+        target: String(obj.sdg_target || obj.target || "").trim(),
+        reason: String(obj.reason || "").trim(),
+        source: String(obj.source || "").trim()
+      };
+    }
+
+    // A list of SDG entries (strings like "SDG 4, SDG 8" are split), without duplicates.
+    function normaliseSDGList(values) {
+      const list = [];
+      const seen = new Set();
+
+      asList(values).forEach(value => {
+        const parts = typeof value === "string" ? value.split(/[;,|]/) : [value];
+        parts.forEach(part => {
+          const sdg = normaliseSDG(typeof part === "string" ? part.trim() : part);
+          if (!sdg) return;
+
+          const key = sdg.number + "|" + sdg.reason;
+          if (seen.has(key)) return;
+          seen.add(key);
+          list.push(sdg);
+        });
+      });
+
+      return list;
+    }
+
+    // ---------- building the stages from backend data ----------
+
+    // Course duration as readable text such as "~4 weeks". A bare number
+    // with no unit is not shown, because the unit would be a guess.
     function getDuration(item) {
       const raw = item.duration ?? item.estimated_time ?? item.time_to_complete;
 
-      // Text such as "4 weeks" or "Self-paced".
       if (typeof raw === "string" && raw.trim() && Number.isNaN(Number(raw))) {
         return raw.trim();
       }
 
-      // A number is only usable together with a unit.
       const unit = String(item.duration_unit ?? item.unit ?? "").trim();
       if (raw !== undefined && raw !== null && raw !== "" &&
         Number.isFinite(Number(raw)) && unit) {
         return `~${Number(raw)} ${unit}`;
       }
 
-      // Dedicated fields such as duration_weeks.
       const fields = [
         ["duration_weeks", "weeks"], ["weeks", "weeks"],
         ["duration_hours", "hours"], ["hours", "hours"],
@@ -857,28 +525,23 @@
       return "";
     }
 
-    // Turn one backend pathway item into a clean "course" object.
-    // Any value the backend did not send stays empty (never invented).
+    // Turn one backend course into a clean object. Missing values stay empty.
     function buildCourse(item) {
-      // A plain string is treated as just a course name.
       if (typeof item !== "object" || item === null) {
         return {
-          name: String(item), provider: "", url: "", duration: "",
-          hasCertificate: false, description: "", priority: "",
-          forSkills: []
+          name: String(item), provider: "", url: "", duration: "", costStatus: "",
+          hasCertificate: false, description: "", priority: "", forSkills: []
         };
       }
 
-      // Certificate link first, then any general course link.
       const certificateUrl =
         item.certificate_url || item.cert_url || item.certificate_link || "";
       const url = certificateUrl || item.url || item.link || item.course_url || "";
 
-      // "certificate" can be true/false or "yes"/"no" in a CSV.
       const flag = normalise(item.certificate ?? item.has_certificate);
       const flagged = flag !== "" && !["no", "false", "0", "n"].includes(flag);
 
-      // Which skill(s) this course teaches. Used to attach it to a stage.
+      // Which skill(s) this course teaches (used to attach it to a stage).
       const rawSkills = asList(item.skills).length
         ? asList(item.skills)
         : [item.skill ?? item.skill_name ?? item.for_skill];
@@ -888,38 +551,91 @@
         provider: item.provider || item.platform || "",
         url: typeof url === "string" ? url : "",
         duration: getDuration(item),
+        costStatus: item.cost_status || item.cost || "",
         hasCertificate: Boolean(certificateUrl) || flagged,
         description: item.description || "",
-        priority: item.priority || item.importance || "",
+        priority: normalisePriority(item.priority || item.importance),
         forSkills: rawSkills.map(getSkillName).map(normalise).filter(Boolean)
       };
     }
 
-    // Build the list of stages: one stage per suggested skill.
-    // Each stage has: title, priority, description, courses[], standalone.
+    // The backend sends pathway as steps { skill, importance, courses[], sdg[] }.
+    // Flatten it to a course list, each course tagged with its skill.
+    // Old-style flat pathway items (no "courses" list) are passed through.
+    function flattenPathway(role) {
+      const flat = [];
+
+      asList(role.pathway).forEach(step => {
+        if (step && Array.isArray(step.courses)) {
+          step.courses.forEach(course => {
+            flat.push(course && typeof course === "object"
+              ? { ...course, skill: step.skill }
+              : { course_name: course, skill: step.skill });
+          });
+        } else {
+          flat.push(step);
+        }
+      });
+
+      return flat;
+    }
+
+    // One stage per skill. Each stage: title, priority, sdg[], description,
+    // courses[], standalone.
     function buildStages(role) {
-      // 1. The suggested skills (skill gaps), in the backend's order.
+      const steps = asList(role.pathway).filter(step => step && Array.isArray(step.courses));
+      const stepFor = name => steps.find(step => normalise(getSkillName(step)) === normalise(name));
+
       const gaps = asList(role.skill_gap)
         .map(gap => ({
           name: getSkillName(gap),
-          priority: gap && typeof gap === "object" ? (gap.priority || gap.importance || "") : ""
+          priority: gap && typeof gap === "object"
+            ? normalisePriority(gap.priority || gap.importance) : "",
+          sdg: gap && typeof gap === "object" ? gap.sdg : undefined
         }))
         .filter(gap => gap.name);
 
-      // 2. Every course the backend sent for this role.
-      const courses = asList(role.pathway).map(buildCourse);
+      const seenCourses = new Set();
+      const courses = flattenPathway(role).map(buildCourse).filter(course => {
+        const key = [course.forSkills.join(","), course.url || course.name, course.provider]
+          .map(normalise).join("|");
+        if (seenCourses.has(key)) return false;
+        seenCourses.add(key);
+        return true;
+      });
+      const coursesFor = name => courses.filter(course => course.forSkills.includes(normalise(name)));
 
-      // 3. One stage per skill, holding the courses that teach that skill.
-      const result = gaps.map(gap => ({
-        title: gap.name,
-        priority: gap.priority,
-        description: "",
-        courses: courses.filter(course => course.forSkills.includes(normalise(gap.name))),
-        standalone: false
-      }));
+      // 1. A stage for every skill gap.
+      const result = gaps.map(gap => {
+        const step = stepFor(gap.name);
+        return {
+          title: gap.name,
+          priority: gap.priority || normalisePriority(step && step.importance),
+          sdg: normaliseSDGList([...asList(gap.sdg), ...asList(step && step.sdg)]),
+          description: "",
+          courses: coursesFor(gap.name),
+          standalone: false
+        };
+      });
 
-      // 4. Courses that matched no skill still get shown, as their own stage,
-      //    so no backend data is silently dropped.
+      // 2. Pathway steps for skills that are not in the gap list.
+      const seen = new Set(gaps.map(gap => normalise(gap.name)));
+      steps.forEach(step => {
+        const name = getSkillName(step);
+        if (!name || seen.has(normalise(name))) return;
+        seen.add(normalise(name));
+
+        result.push({
+          title: name,
+          priority: normalisePriority(step.importance),
+          sdg: normaliseSDGList(step.sdg),
+          description: "",
+          courses: coursesFor(name),
+          standalone: false
+        });
+      });
+
+      // 3. Courses that matched no skill still show, as their own stage.
       const used = new Set();
       result.forEach(stage => stage.courses.forEach(course => used.add(course)));
 
@@ -927,6 +643,7 @@
         result.push({
           title: course.name,
           priority: course.priority,
+          sdg: [],
           description: course.description,
           courses: [course],
           standalone: true   // title is the course name, so don't repeat it
@@ -936,54 +653,16 @@
       return result;
     }
 
-    // ----------------------------------------------------------
-    // SAVING PROGRESS (which stages are ticked)
-    // ----------------------------------------------------------
+    // ---------- rendering ----------
 
-    // One saved list per role, so different roles don't mix progress.
-    function progressKey() {
-      return "reskillingProgress:" + getRoleName(currentRole);
-    }
-
-    // Load the titles of the stages that were completed before.
-    function loadCompleted() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(progressKey()) || "[]");
-        return Array.isArray(saved) ? saved : [];
-      } catch (error) {
-        return []; // storage blocked or corrupt: start with nothing ticked
-      }
-    }
-
-    // Save the titles of the stages that are currently ticked.
-    function saveCompleted() {
-      const done = [];
-      document.querySelectorAll(".stage-check").forEach((checkbox, index) => {
-        if (checkbox.checked) done.push(stages[index].title);
-      });
-
-      try {
-        localStorage.setItem(progressKey(), JSON.stringify(done));
-      } catch (error) {
-        console.error("Could not save progress:", error); // not fatal
-      }
-    }
-
-    // ----------------------------------------------------------
-    // RENDERING
-    // ----------------------------------------------------------
-
-    // Fill the banner with the selected role's real data.
     function renderBanner() {
       document.getElementById("targetRole").textContent = getRoleName(currentRole);
 
-      // Description is optional: hide the line if there isn't one.
       const description = currentRole.description || currentRole.role_type || "";
       const descriptionEl = document.getElementById("roleDescription");
       descriptionEl.textContent = description;
       descriptionEl.hidden = !description;
 
-      // Score is optional: hide the box if the backend sent none.
       const score = getRoleScore(currentRole);
       document.getElementById("scoreBox").hidden = score === null;
       if (score !== null) {
@@ -991,18 +670,14 @@
       }
     }
 
-    // Build the HTML for one course row inside a stage.
-    // hideName is true for standalone stages, where the card title is
-    // already the course name.
+    // One course row. hideName is true for standalone stages.
     function renderCourse(course, hideName) {
-      // Only real http(s) links are allowed, to block unsafe URLs.
       const hasLink = /^https?:\/\//i.test(course.url);
 
-      // Meta line: provider and duration. If the backend has no duration,
-      // say so instead of leaving a blank.
       const meta = [
         course.provider,
-        course.duration ? "⏱ " + course.duration : "Duration not provided"
+        course.duration ? "⏱ " + course.duration : "Duration not provided",
+        course.costStatus
       ].filter(Boolean).map(escapeHTML).join(" · ");
 
       return `
@@ -1019,95 +694,68 @@
       `;
     }
 
-    // Build one card per stage (one stage per suggested skill).
-    function renderStages() {
-      const completed = new Set(loadCompleted());
+    // One SDG tag as HTML. The label links to "source" only when it is a real http(s) URL.
+    function sdgBadgeHTML(sdg, extraClass = "") {
+      const label = `SDG ${sdg.number} - ${sdg.name}` + (sdg.target ? ` · Target ${sdg.target}` : "");
+      const inner = /^https?:\/\//i.test(sdg.source)
+        ? `<a href="${escapeHTML(sdg.source)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>`
+        : escapeHTML(label);
 
+      return `<span class="sdg-badge ${extraClass}">${inner}</span>`;
+    }
+
+    // Skill-level SDG tags. Only skills that have a mapping show anything.
+    function renderSDG(stage) {
+      if (!stage.sdg || !stage.sdg.length) return "";
+
+      return `<div class="stage-sdg">${stage.sdg.map(sdg => `
+        <div>${sdgBadgeHTML(sdg)}
+        ${sdg.reason ? `<div class="sdg-reason">${escapeHTML(sdg.reason)}</div>` : ""}</div>
+      `).join("")}</div>`;
+    }
+
+    function renderStages() {
       document.getElementById("stageCount").textContent =
         stages.length + (stages.length === 1 ? " skill to build" : " skills to build");
 
       document.getElementById("pathway").innerHTML = stages.map((stage, index) => {
         const stageNumber = String(index + 1).padStart(2, "0");
 
-        // Priority badge uses a colour only for high / medium / low.
         const priority = normalise(stage.priority);
         const priorityClass = ["high", "medium", "low"].includes(priority) ? priority : "";
 
-        // Course rows, or a friendly note if none were found for this skill.
         const coursesHTML = stage.courses.length
           ? `<div class="course-list">${stage.courses.map(course => renderCourse(course, stage.standalone)).join("")}</div>`
           : '<div class="no-course">No course or certificate was found for this skill yet.</div>';
 
         return `
-          <article class="learning-card ${completed.has(stage.title) ? "done" : ""}">
+          <article class="learning-card">
             <div class="card-top">
               <span class="step">SKILL ${stageNumber}</span>
               ${stage.priority ? `<span class="skill-tag ${priorityClass}">${escapeHTML(stage.priority)} priority</span>` : ""}
             </div>
 
             <h3>${escapeHTML(stage.title)}</h3>
+            ${renderSDG(stage)}
             ${stage.description ? `<p>${escapeHTML(stage.description)}</p>` : ""}
 
             ${coursesHTML}
-
-            <label class="complete-label">
-              <input type="checkbox" class="stage-check"
-                     ${completed.has(stage.title) ? "checked" : ""}>
-              Mark this skill as completed
-            </label>
           </article>
         `;
       }).join("");
-
-      // Recalculate progress whenever any checkbox changes.
-      document.querySelectorAll(".stage-check").forEach(checkbox => {
-        checkbox.addEventListener("change", () => {
-          saveCompleted();
-          updateProgress();
-        });
-      });
     }
 
-    // Recalculate the progress bar, counters, card highlight and next step.
-    function updateProgress() {
-      const checkboxes = document.querySelectorAll(".stage-check");
-      const cards = document.querySelectorAll(".learning-card");
-      const total = checkboxes.length;
-      let completedCount = 0;
-      let firstOpenIndex = -1;   // first stage that is not completed yet
-
-      checkboxes.forEach((checkbox, index) => {
-        cards[index].classList.toggle("done", checkbox.checked);
-
-        if (checkbox.checked) {
-          completedCount++;
-        } else if (firstOpenIndex === -1) {
-          firstOpenIndex = index;
-        }
-      });
-
-      const percentage = total ? Math.round((completedCount / total) * 100) : 0;
-
-      document.getElementById("progressFill").style.width = percentage + "%";
-      document.getElementById("progressPercent").textContent = percentage + "% completed";
-      document.getElementById("completedText").textContent =
-        `${completedCount} of ${total} skills completed`;
-      document.getElementById("remainingText").textContent =
-        `${total - completedCount} skills remaining`;
-
-      // Next-step tip: points at the first stage that is not done.
-      document.getElementById("nextStep").textContent = firstOpenIndex === -1
-        ? "You have completed every skill in this pathway. Review your skill gaps again on the Role Matching page."
-        : `Start with "${stages[firstOpenIndex].title}". Complete the course and earn the certificate, then practise it with a small exercise.`;
+    function renderNextStep() {
+      document.getElementById("nextStep").textContent =
+        `Start with "${stages[0].title}". Complete the course and earn the certificate, then practise it with a small exercise.`;
     }
 
-    // Goals come from the real skill gaps (one goal per skill), so there
-    // are no generic or made-up goals. The card is hidden if there are none.
+    // Goals come from the real skills in the pathway (no generic goals).
     function renderGoals() {
-      const goals = asList(currentRole.skill_gap)
-        .map(getSkillName)
-        .filter(Boolean)
-        .slice(0, 6)   // keep the card short
+      const goals = stages
+        .filter(stage => !stage.standalone)
+        .map(stage => stage.title)
+        .slice(0, 6)
         .map(skill => `Develop your ${skill} skills`);
 
       document.getElementById("goalList").innerHTML =
@@ -1115,28 +763,32 @@
       document.getElementById("goalsCard").hidden = goals.length === 0;
     }
 
-    // ----------------------------------------------------------
-    // START-UP
-    // ----------------------------------------------------------
+    // ---------- start-up ----------
     function init() {
       currentRole = getSelectedRole();
 
-      // Case 1: the user came here without picking a role.
       if (!currentRole) {
         showStatus(
           'No role has been selected yet. Go to <a href="/rolematching.html">Role Matching</a>, choose a role, then continue to your pathway.'
         );
+
+        // Help find the cause: show what this page can actually see.
+        const keys = listStoredKeys();
+        const hint = document.createElement("div");
+        hint.style.cssText = "margin-top:8px;font-size:11px;opacity:.8;overflow-wrap:anywhere;";
+        hint.textContent = "Saved in this browser: " + (keys.length ? keys.join(", ") : "nothing") +
+          ". Expected key: selectedCareerRole.";
+        document.getElementById("pageStatus").appendChild(hint);
         return;
       }
 
       stages = buildStages(currentRole);
 
-      // Case 2: a role exists but the backend sent no gaps or learning items.
       if (!stages.length) {
         renderBanner();
         document.getElementById("pathwayContent").hidden = false;
         document.querySelectorAll("#pathwayContent > section.card, #pathwayContent > .bottom-grid")
-          .forEach(element => {element.hidden = true;});
+          .forEach(element => { element.hidden = true; });
 
         showStatus(
           "The backend did not return any skill gaps or learning items for this role, so there is no pathway to show yet."
@@ -1144,15 +796,13 @@
         return;
       }
 
-      // Case 3: normal flow.
       renderBanner();
       renderStages();
       renderGoals();
-      updateProgress();
+      renderNextStep();
 
-      // Footer: honest note about where the data comes from.
       document.getElementById("footerNote").textContent =
-        "FuturePath AI · Skills, courses and certificates come from your matched role and skill gaps. " +
+        "FuturePath AI · Skills, courses and SDG tags come from your matched role and skill gaps. " +
         "Course durations, where shown, are estimates and not guarantees.";
 
       document.getElementById("pathwayContent").hidden = false;
