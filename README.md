@@ -26,6 +26,7 @@
 | Slide Deck        | https://www.canva.com/design/DAHY5ujJid0/CYconr-nQxDKkKKTk6fiqA/edit                   |
 | Demo Video        | https://example.com/demo-video](https://youtu.be/J55reJcBxpc                |
 
+##Slide deck: FuturePath AI.pdf
 
 ---
 
