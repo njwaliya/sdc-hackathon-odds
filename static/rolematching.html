@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FuturePath AI | Role Matching</title>
+
+  <style>
+    /* Design tokens: change these to re-theme the page */
+    :root {
+      --purple: #6d28d9;
+      --purple2: #8b5cf6;
+      --ink: #24133f;
+      --muted: #746887;
+      --bg: #f7f5fc;
+      --line: #e8e1f4;
+      --teal: #0f8a78;
+      --orange: #c65a22;
+      --white: #fff;
+      /* FIX: these two were used below but never defined */
+      --text: #281d3d;
+      --border: #eee8f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    button, select { font: inherit; cursor: pointer; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 235px;
+      background: linear-gradient(165deg, #4c1d95, #6d28d9 55%, #3b0764);
+      padding: 25px 17px;
+      color: #fff;
+      z-index: 10;
+    }
+    .sidebar.hidden { transform: translateX(-100%); }
+
+    .brand { font-size: 21px; font-weight: 700; margin: 0 10px 35px; }
+    .brand small { display: block; margin-top: 7px; color: #e9d5ff; font-size: 11px; font-weight: 400; }
+
+    .nav a {
+      display: block;
+      padding: 13px 12px;
+      margin: 5px 0;
+      border-radius: 10px;
+      color: #f3e8ff;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .nav a:hover, .nav a.active { background: #ffffff30; color: white; }
+
+    /* Main content area */
+    .main { margin-left: 245px; padding: 25px 32px 40px; transition: margin .25s; }
+    .main.expanded { margin-left: 0; }
+
+    .topbar, .top-left, .heading, .panel-heading, .actions, .gap-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .topbar { margin-bottom: 28px; }
+    .top-left { justify-content: flex-start; }
+
+    .menu-button {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--purple);
+      border-radius: 10px;
+      padding: 10px 13px;
+      font-size: 17px;
+    }
+
+    .breadcrumb, .subtitle, .panel-heading p, .role-description, .note { color: var(--muted); }
+    .breadcrumb { font-size: 12px; margin-bottom: 5px; }
+
+    .avatar {
+      background: #ede9fe;
+      color: var(--purple);
+      padding: 12px;
+      border-radius: 50%;
+      font-weight: 700;
+    }
+
+    /* Page heading */
+    .heading { margin-bottom: 25px; }
+    .eyebrow { color: var(--purple); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; }
+    h1 { font-size: 29px; margin: 10px 0; }
+    .subtitle { font-size: 13px; line-height: 1.6; }
+
+    /* Summary cards */
+    .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .summary-card {
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #eee4ff;
+      background: linear-gradient(135deg, white, #faf5ff);
+    }
+    .summary-card p { font-size: 12px; color: var(--muted); margin: 0; }
+    .summary-card h2 { font-size: 25px; margin: 10px 0 5px; overflow-wrap: anywhere; }
+    .summary-card small { color: #16845b; font-size: 11px; }
+
+    /* Two-column layout: roles (left) + skill gaps (right) */
+    .content { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); gap: 18px; }
+
+    .panel {
+      min-width: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 22px;
+      box-shadow: 0 5px 20px #3b076408;
+    }
+    .panel-heading { margin-bottom: 18px; }
+    .panel-heading h2 { font-size: 16px; margin: 0 0 6px; }
+    .panel-heading p { font-size: 12px; margin: 0; }
+
+    .tag { background: #f3e8ff; color: var(--purple); padding: 7px 9px; border-radius: 7px; font-size: 10px; white-space: nowrap; }
+
+    /* Role cards */
+    .roles { display: flex; flex-direction: column; gap: 12px; }
+
+    .role-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 90px;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      transition: border-color .2s, background .2s;
+    }
+    .role-card:hover { border-color: #c4b5fd; }
+    .role-card.selected { border: 1.5px solid #8b5cf6; background: #fcfaff; }
+
+    .role-card h3 { font-size: 14px; margin: 0 0 7px; }
+    .role-description { font-size: 12px; line-height: 1.5; }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .skill-chip { background: #f3f0f9; color: #6d5b85; padding: 6px 8px; border-radius: 6px; font-size: 11px; }
+
+    .match-score { text-align: right; }
+    .match-score strong { color: var(--purple); font-size: 22px; }
+    .match-score small { display: block; color: var(--muted); font-size: 10px; margin-top: 4px; }
+
+    .meter { height: 5px; background: #eee8f7; border-radius: 10px; margin-top: 10px; overflow: hidden; }
+    .meter span { display: block; height: 100%; background: linear-gradient(90deg, #7c3aed, #c084fc); }
+
+    .select-button, .button { border-radius: 9px; padding: 10px 12px; font-size: 12px; font-weight: 600; }
+    .select-button { background: white; color: var(--purple); border: 1px solid #ddd6fe; margin-top: 12px; }
+    .selected .select-button { background: var(--purple); color: white; }
+
+    /* Skill gap list */
+    .gap-item { margin: 17px 0; font-size: 12px; }
+    .gap-item>div { min-width: 0; overflow-wrap: anywhere; }
+    .gap-item small { display: block; color: var(--muted); font-size: 10px; margin-top: 5px; }
+
+    .priority { padding: 6px 8px; border-radius: 6px; font-size: 10px; white-space: nowrap; }
+    .high { background: #fee2e2; color: #b91c1c; }
+    .medium { background: #fef3c7; color: #92400e; }
+    .low { background: #dcfce7; color: #166534; }
+
+    .divider { height: 1px; background: var(--border); margin: 18px 0; }
+
+    .tip { padding: 14px; border-radius: 11px; background: #f5f0ff; color: #5b21b6; font-size: 12px; line-height: 1.6; margin-top: 18px; }
+
+    /* Status message */
+    .status { padding: 14px; border-radius: 10px; background: #f5f0ff; color: #5b21b6; font-size: 12px; line-height: 1.6; margin: 12px 0; }
+    .status.error { background: #fff1f2; color: #be123c; }
+
+    /* Bottom actions */
+    .actions { margin-top: 22px; }
+    .button { border: 0; padding: 13px 17px; }
+    .button-primary { background: linear-gradient(100deg, #6d28d9, #a855f7); color: white; }
+    .button-secondary { border: 1px solid #ddd6fe; background: white; color: var(--purple); }
+    .note { font-size: 11px; line-height: 1.6; margin-top: 16px; }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+
+    /* Responsive */
+    @media (max-width: 950px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; padding: 20px; }
+      .content { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .main { padding: 15px; }
+      .summary { grid-template-columns: 1fr; }
+      .heading { align-items: flex-start; flex-direction: column; }
+      h1 { font-size: 24px; }
+      .panel { padding: 15px; }
+      .actions { align-items: stretch; flex-direction: column-reverse; }
+      .actions button { width: 100%; }
+      .role-card { grid-template-columns: minmax(0, 1fr) 72px; }
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      ✦ FuturePath
+      <small>Your Skills. Your Future.</small>
+    </div>
+
+    <nav class="nav">
+      <a href="/dashboard.html">⌂ &nbsp; Dashboard</a>
+      <a class="active" href="/rolematching.html">◎ &nbsp; Role Matching</a>
+      <a href="/reskilling.html">♧ &nbsp; Learning Pathway</a>
+      <a href="/">⇥ &nbsp; Upload CV</a>
+    </nav>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <div class="top-left">
+        <button class="menu-button" type="button" onclick="toggleSidebar()" aria-label="Toggle navigation">☰</button>
+        <div>
+          <div class="breadcrumb">Workspace / Career planning</div>
+          <b style="font-size:13px">Future Role Matching</b>
+        </div>
+      </div>
+
+      <!-- Initial and greeting are filled in by renderProfile() from the CV name -->
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="avatar" id="avatar">U</div>
+        <div style="font-size:12px">
+          <b id="greeting">Hi there</b>
+          <div class="breadcrumb" style="margin:3px 0 0">My Career Plan</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="heading">
+      <div>
+        <div class="eyebrow">STEP 03 · FIND YOUR NEXT ROLE</div>
+        <h1>Your future role matches</h1>
+        <div class="subtitle">
+          Explore recommended roles based on your CV skills and review the
+          skills you may need to develop next.
+        </div>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="summary-card">
+        <p>Roles matched</p>
+        <h2 id="roleCount">—</h2>
+        <small>From the matching API</small>
+      </div>
+
+      <div class="summary-card">
+        <p>Strongest match</p>
+        <h2 id="bestScore">—</h2>
+        <small id="bestRole">Waiting for results</small>
+      </div>
+
+      <div class="summary-card">
+        <p>Priority skills to build</p>
+        <h2 id="gapCount">—</h2>
+        <small>For the selected role</small>
+      </div>
+    </section>
+
+    <div id="pageStatus" class="status" role="status" aria-live="polite">
+      Loading your CV skills and matching roles…
+    </div>
+
+    <section class="content">
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Recommended roles</h2>
+            <p>Recommendations returned by the backend</p>
+          </div>
+          <span class="tag">Live API</span>
+        </div>
+
+        <div class="roles" id="roles"></div>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Skills gap overview</h2>
+            <p id="gapSubtitle">Select a recommended role</p>
+          </div>
+          <span class="tag">Skill gaps</span>
+        </div>
+
+        <div id="gapList">
+          <p class="subtitle">Your skill gaps will appear here.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <b style="font-size:12px">Skills detected from your CV</b>
+        <div class="skills" id="cvSkills">
+          <span class="subtitle">Loading CV skills…</span>
+        </div>
+
+        <div class="tip">
+          <b>Suggested next step</b><br>
+          Select a role, review the skill gaps and continue to your
+          learning pathway.
+        </div>
+      </aside>
+    </section>
+
+    <div class="actions">
+      <button class="button button-primary" id="pathwayButton" type="button" onclick="continuePathway()" disabled>
+        Build my reskilling pathway
+      </button>
+    </div>
+
+    <p class="note" id="disclaimer">
+      Role recommendations and skill gaps are based on the data returned
+      by the backend. Matching results depend on the CV skills detected
+      and the available role and trend data.
+    </p>
+  </main>
+
+  <script>
+    /*
+     * ROLE MATCHING PAGE
+     * 1. Read the CV skills saved in the browser after upload.
+     * 2. POST them (plus a default scenario) to /api/match.
+     * 3. Render the returned roles, scores and skill gaps.
+     * 4. Save the chosen role ("selectedCareerRole") for the Learning Pathway page.
+     * Nothing is hard-coded: everything shown comes from the backend.
+     */
+
+    let matchResults = [];       // roles returned by the API
+    let selectedRoleIndex = 0;   // which role card is selected
+    let cvSkillNames = [];       // skill names read from browser storage
+
+    // The Moderate / Fast toggle lives on the Dashboard, so this page always
+    // sends one fixed scenario because /api/match expects a "scenario" value.
+    const DEFAULT_SCENARIO = "moderate";
+
+    // ---------- helpers ----------
+
+    // Escape backend text before inserting it into HTML.
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
+    }
+
+    function setStatus(message, isError = false) {
+      const status = document.getElementById("pageStatus");
+      status.textContent = message;
+      status.classList.toggle("error", isError);
+      status.hidden = false;
+    }
+
+    function resetSummary() {
+      document.getElementById("roleCount").textContent = "—";
+      document.getElementById("bestScore").textContent = "—";
+      document.getElementById("bestRole").textContent = "Waiting for results";
+      document.getElementById("gapCount").textContent = "—";
+    }
+
+    // ---------- user profile (greeting + avatar initial) ----------
+
+    function toTitleCase(text) {
+      return text.toLowerCase().replace(/\b\p{L}/gu, letter => letter.toUpperCase());
+    }
+
+    // "CV: NURAINA HASSAN.pdf" -> "Nuraina Hassan"
+    function nameFromFileName(fileName) {
+      const cleaned = String(fileName)
+        .replace(/\.[a-z0-9]{2,5}$/i, "")
+        .replace(/^\s*(cv|resume|curriculum vitae)\s*[:\-_.]*\s*/i, "")
+        .replace(/[_\-.]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      return cleaned ? toTitleCase(cleaned) : "";
+    }
+
+    // Candidate name from browser storage: saved name, then saved profile
+    // object, then the uploaded file name. Returns "" if nothing is found.
+    function getCandidateName() {
+      try {
+        const nameKeys = ["cvName", "candidateName", "candidate_name", "userName", "name"];
+        for (const key of nameKeys) {
+          const value = sessionStorage.getItem(key) || localStorage.getItem(key);
+          if (value && value.trim()) return toTitleCase(value.trim());
+        }
+
+        const objectKeys = ["cvProfile", "cvData", "candidate", "uploadResult"];
+        for (const key of objectKeys) {
+          const raw = sessionStorage.getItem(key) || localStorage.getItem(key);
+          if (!raw) continue;
+
+          const parsed = JSON.parse(raw);
+          const found = parsed && (parsed.name || parsed.candidate_name || parsed.full_name);
+          if (found) return toTitleCase(String(found).trim());
+        }
+
+        const fileKeys = ["cvFileName", "cvFilename", "cv_filename", "uploadedFileName", "fileName", "filename"];
+        for (const key of fileKeys) {
+          const value = sessionStorage.getItem(key) || localStorage.getItem(key);
+          const fromFile = value ? nameFromFileName(value) : "";
+          if (fromFile) return fromFile;
+        }
+      } catch (error) {
+        console.error("Could not read the candidate name:", error);
+      }
+
+      return "";
+    }
+
+    function renderProfile() {
+      const name = getCandidateName();
+      if (!name) return; // keep the defaults: "U" and "Hi there"
+
+      document.getElementById("greeting").textContent = "Hi, " + name;
+      document.getElementById("avatar").textContent = name.charAt(0).toUpperCase();
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+
+      if (window.innerWidth <= 950) {
+        sidebar.classList.toggle("open");
+      } else {
+        sidebar.classList.toggle("hidden");
+        main.classList.toggle("expanded");
+      }
+    }
+
+    // ---------- reading the CV skills from browser storage ----------
+
+    // Sources, in order: sessionStorage "cvSkills", sessionStorage
+    // "skill_scores" (keys = skill names), localStorage "cvSkills".
+    function getStoredSkills() {
+      let storedSkills = [];
+
+      try {
+        const savedNames = sessionStorage.getItem("cvSkills");
+        const savedScores = sessionStorage.getItem("skill_scores");
+
+        if (savedNames) {
+          const parsed = JSON.parse(savedNames);
+
+          if (Array.isArray(parsed)) {
+            storedSkills = parsed;
+          } else if (parsed && typeof parsed === "object") {
+            storedSkills = Object.keys(parsed);
+          }
+        }
+
+        if (!storedSkills.length && savedScores) {
+          const parsedScores = JSON.parse(savedScores);
+
+          if (Array.isArray(parsedScores)) {
+            storedSkills = parsedScores;
+          } else if (parsedScores && typeof parsedScores === "object") {
+            storedSkills = Object.keys(parsedScores);
+          }
+        }
+
+        if (!storedSkills.length) {
+          const localSkills = localStorage.getItem("cvSkills");
+
+          if (localSkills) {
+            const parsed = JSON.parse(localSkills);
+            if (Array.isArray(parsed)) storedSkills = parsed;
+          }
+        }
+      } catch (error) {
+        console.error("Could not read saved CV skills:", error);
+      }
+
+      // Keep only non-empty strings and remove duplicates.
+      return [...new Set(
+        storedSkills
+          .map(skill => typeof skill === "string" ? skill.trim() : "")
+          .filter(Boolean)
+      )];
+    }
+
+    function renderCVSkills() {
+      const container = document.getElementById("cvSkills");
+
+      if (!cvSkillNames.length) {
+        container.innerHTML = '<span class="subtitle">No saved CV skills found.</span>';
+        return;
+      }
+
+      container.innerHTML = cvSkillNames.map(skill =>
+        `<span class="skill-chip">${escapeHTML(skill)}</span>`
+      ).join("");
+    }
+
+    // ---------- reading fields from the API response ----------
+
+    function getRoleName(role) {
+      return role.role_name || role.title || role.name || "Recommended role";
+    }
+
+    function getSkillName(skill) {
+      if (skill && typeof skill === "object") {
+        return skill.skill_name || skill.name || "";
+      }
+      return skill ? String(skill) : "";
+    }
+
+    // Match score as 0-100, or null if the backend sent none (never invented).
+    function getRoleScore(role) {
+      const rawScore = role.score ?? role.match_score ?? role.fit_score;
+
+      if (rawScore === undefined || rawScore === null || rawScore === "") return null;
+
+      const score = Number(rawScore);
+      if (!Number.isFinite(score)) return null;
+
+      const percent = score >= 0 && score <= 1 ? score * 100 : score;
+      return Math.max(0, Math.min(100, percent));
+    }
+
+    function asList(value) {
+      if (Array.isArray(value)) return value;
+      if (value === undefined || value === null || value === "") return [];
+      return [value];
+    }
+
+    // ---------- rendering: role cards + summary ----------
+
+    function renderRoles(emptyMessage = "The API returned no matching roles.") {
+      const container = document.getElementById("roles");
+
+      if (!matchResults.length) {
+        container.innerHTML = `<p class="subtitle">${escapeHTML(emptyMessage)}</p>`;
+        resetSummary();
+        return;
+      }
+
+      container.innerHTML = matchResults.map((role, index) => {
+        const name = getRoleName(role);
+        const score = getRoleScore(role);
+        const description = role.description || role.role_type || "";
+        const selected = index === selectedRoleIndex;
+
+        const chipsHTML = asList(role.skills)
+          .map(getSkillName)
+          .filter(Boolean)
+          .map(skill => `<span class="skill-chip">${escapeHTML(skill)}</span>`)
+          .join("");
+
+        return `
+          <article class="role-card ${selected ? "selected" : ""}">
+            <div>
+              <h3>${escapeHTML(name)}</h3>
+              <div class="role-description">
+                ${escapeHTML(description || "Recommended based on the backend match results.")}
+              </div>
+
+              <div class="skills">${chipsHTML}</div>
+
+              <button class="select-button" type="button"
+                      onclick="selectRole(${index})">
+                ${selected ? "✓ Selected role" : "View skill gaps"}
+              </button>
+            </div>
+
+            <div class="match-score">
+              <strong>${score === null ? "—" : Math.round(score) + "%"}</strong>
+              <small>${score === null ? "score unavailable" : "match score"}</small>
+              ${score === null ? "" : `
+                <div class="meter">
+                  <span style="width:${score}%"></span>
+                </div>
+              `}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.getElementById("roleCount").textContent = matchResults.length;
+
+      // Role with the highest score; roles without a score are skipped.
+      const bestRole = matchResults.reduce((best, role) => {
+        if (!best) return role;
+
+        const currentScore = getRoleScore(role);
+        const bestScore = getRoleScore(best);
+
+        if (currentScore === null) return best;
+        if (bestScore === null || currentScore > bestScore) return role;
+
+        return best;
+      }, null);
+
+      document.getElementById("bestRole").textContent =
+        bestRole ? getRoleName(bestRole) : "Score unavailable";
+
+      const bestScore = bestRole ? getRoleScore(bestRole) : null;
+      document.getElementById("bestScore").textContent =
+        bestScore === null ? "—" : `${Math.round(bestScore)}%`;
+    }
+
+    // ---------- rendering: skill gaps for the selected role ----------
+
+    // Courses are shown on the Learning Pathway page (reskilling.html), not here.
+    function renderGaps() {
+      const role = matchResults[selectedRoleIndex];
+      const gapList = document.getElementById("gapList");
+
+      if (!role) {
+        document.getElementById("gapSubtitle").textContent = "No role selected";
+        document.getElementById("gapCount").textContent = "—";
+        gapList.innerHTML =
+          '<p class="subtitle">Skill gaps are unavailable because no role was returned.</p>';
+        document.getElementById("pathwayButton").disabled = true;
+        return;
+      }
+
+      document.getElementById("gapSubtitle").textContent = "For " + getRoleName(role);
+
+      const gaps = asList(role.skill_gap);
+      document.getElementById("gapCount").textContent = gaps.length;
+
+      const gapHTML = gaps.map(gap => {
+        const name = typeof gap === "string"
+          ? gap
+          : (gap.skill_name || gap.skill || gap.name || gap.course_name || "");
+
+        const priority = typeof gap === "object"
+          ? (gap.priority || gap.importance || "")
+          : "";
+
+        const priorityClass = ["high", "medium", "low"].includes(
+          String(priority).toLowerCase()
+        ) ? String(priority).toLowerCase() : "";
+
+        return `
+          <div class="gap-item">
+            <div>
+              ${escapeHTML(name || "Skill gap")}
+              <small>Recommended skill to develop</small>
+            </div>
+            ${priority ? `
+              <span class="priority ${priorityClass}">
+                ${escapeHTML(priority)}
+              </span>
+            ` : ""}
+          </div>
+        `;
+      }).join("");
+
+      gapList.innerHTML =
+        gapHTML || '<p class="subtitle">The API did not return skill-gap details for this role.</p>';
+
+      document.getElementById("pathwayButton").disabled = false;
+    }
+
+    // FIX: save the chosen role so the Learning Pathway page can read it,
+    // whether the user uses the button below or the sidebar link.
+    function saveSelectedRole() {
+      const role = matchResults[selectedRoleIndex];
+      if (!role) return;
+
+      const json = JSON.stringify(role);
+      for (const storage of [sessionStorage, localStorage]) {
+        try {
+          storage.setItem("selectedCareerRole", json);
+        } catch (error) {
+          console.error("Could not save the selected role:", error);
+        }
+      }
+    }
+
+    // Called when the user clicks a role card button.
+    function selectRole(index) {
+      if (!Number.isInteger(index) || !matchResults[index]) return;
+
+      selectedRoleIndex = index;
+      saveSelectedRole();   // FIX: remember the choice straight away
+      renderRoles();
+      renderGaps();
+    }
+
+    // ---------- loading data from the backend ----------
+
+    async function loadRoleMatches() {
+      const skills = getStoredSkills();
+      cvSkillNames = skills;
+      renderCVSkills();
+
+      if (!skills.length) {
+        matchResults = [];
+        resetSummary();
+        setStatus(
+          "No CV skills were found in this browser session. Upload your CV first, then return to Role Matching.",
+          true
+        );
+        document.getElementById("roles").innerHTML = "";
+        document.getElementById("pathwayButton").disabled = true;
+        return;
+      }
+
+      setStatus("Matching your CV skills with available roles…");
+      document.getElementById("pathwayButton").disabled = true;
+
+      try {
+        const response = await fetch("/api/match", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            skills: skills,
+            scenario: DEFAULT_SCENARIO
+          })
+        });
+
+        // A non-JSON error page would otherwise give a confusing message.
+        let data;
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          throw new Error("The server returned an unreadable response.");
+        }
+
+        if (!response.ok) {
+          throw new Error(data.error || data.message || "The role matching request failed.");
+        }
+
+        if (!Array.isArray(data.results)) {
+          throw new Error("The API response does not contain a valid results list.");
+        }
+
+        matchResults = data.results;
+        selectedRoleIndex = 0;
+        saveSelectedRole();   // FIX: the first role is shown as selected, so save it
+
+        renderRoles();
+        renderGaps();
+
+        document.getElementById("disclaimer").textContent =
+          data.disclaimer ||
+          "Recommendations are generated using the current backend data and matching logic.";
+
+        setStatus(
+          matchResults.length
+            ? `Role matching complete. ${matchResults.length} result(s) returned by the backend.`
+            : "The backend did not find matching roles."
+        );
+      } catch (error) {
+        console.error("Role matching error:", error);
+        matchResults = [];
+
+        renderRoles("Role matches could not be loaded.");
+        renderGaps();
+
+        setStatus(
+          error.message || "Unable to load role matches. Check the Flask server and API.",
+          true
+        );
+      }
+    }
+
+    // ---------- navigation to the next page ----------
+
+    function continuePathway() {
+      if (!matchResults[selectedRoleIndex]) return;
+
+      saveSelectedRole();
+      window.location.href = "/reskilling.html";
+    }
+
+    // ---------- start-up ----------
+    renderProfile();
+    loadRoleMatches();
+  </script>
+</body>
+
+</html> 

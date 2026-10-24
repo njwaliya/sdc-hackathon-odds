@@ -60,6 +60,8 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 | Hosting / Dev | Replit                       |
 
 ---
+## How to Run
+
 ## How We Use Replit
 
 - **Development:** We built the frontend using HTML, CSS, and JavaScript in Replit. We developed the Python/Flask backend using VS Code and Anaconda, then moved it to Replit to integrate it with the frontend.
@@ -89,7 +91,15 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 | Nur Najwa Alieya Binti Romzi | M3 — Python/Flask backend | [@njwaliya](https://github.com/njwaliya) |
 | Nur Syahirah Binti Mohd Riduan | M4 — frontend (HTML, CSS, JavaScript) | [@nursyahirahbintimohdriduan-05](https://github.com/nursyahirahbintimohdriduan-05) |
 
-
+## Source
+- World Economic Forum, The Future of Jobs Report 2025, 7 Januari 2025. https://www.weforum.org/publications/the-future-of-jobs-report-2025/ (accessed [20/10/2026])
+- U.S. Department of Labor, O*NET OnLine, 43-3051.00 Payroll and Timekeeping Clerks. https://www.onetonline.org/link/details/43-3051.00 (accessed [20/10/2026])
+- United Nations, Sustainable Development Goals. https://sdgs.un.org/goals
+- https://www.coursera.org/specializations/microsoft-365-fundamentals
+- https://www.linkedin.com/learning/coaching-and-developing-employees-22657884
+- https://www.edx.org/learn/social-science/eth-zurich-beyond-systems-thinking-2
+- https://www.netacad.com/courses/data-analytics-essentials
+  
 ## Submission Checklist
 
 - [ ] Team name, domain (Domain 1 / Domain 2) and SDG track filled in
