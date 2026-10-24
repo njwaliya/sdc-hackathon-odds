@@ -60,6 +60,8 @@ FuturePath AI helps Payroll and Timekeeping Clerks prepare for workforce changes
 | Hosting / Dev | Replit                       |
 
 ---
+## How to Run
+
 ## How We Use Replit
 
 - **Development:** We built the frontend using HTML, CSS, and JavaScript in Replit. We developed the Python/Flask backend using VS Code and Anaconda, then moved it to Replit to integrate it with the frontend.
