@@ -21,11 +21,11 @@
 | Resource          | Link                                           |
 | ----------------- | ---------------------------------------------- |
 | GitHub Repository | https://github.com/njwaliya/sdc-hackathon-odds  |
-| Replit Project    | https://replit.com/@your-username/your-project |
-| Live Demo         | https://your-project.replit.app                |
-| RunPod Endpoint   | https://api.runpod.ai/v2/your-endpoint-id      |
-| Slide Deck        | https://example.com/slides                     |
-| Demo Video        | https://example.com/demo-video                 |
+| Replit Project    | https://sdc-hackathon-odds--farishaayuni211.replit.app|
+| Live Demo         | https://youtu.be/J55reJcBxpc             |
+| Slide Deck        | https://www.canva.com/design/DAHY5ujJid0/CYconr-nQxDKkKKTk6fiqA/edit                   |
+| Demo Video        | https://example.com/demo-video](https://youtu.be/J55reJcBxpc                |
+
 
 ---
 
