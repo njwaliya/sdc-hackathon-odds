@@ -19,9 +19,7 @@
       --white: #fff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -30,14 +28,9 @@
       color: var(--ink);
     }
 
-    button {
-      font: inherit;
-      cursor: pointer;
-    }
+    button { font: inherit; cursor: pointer; }
 
-    .layout {
-      min-height: 100vh;
-    }
+    .layout { min-height: 100vh; }
 
     .sidebar {
       position: fixed;
@@ -49,19 +42,8 @@
       z-index: 10;
     }
 
-    .brand {
-      font-size: 21px;
-      font-weight: 800;
-      padding: 4px 10px 30px;
-    }
-
-    .brand small {
-      display: block;
-      font-size: 11px;
-      font-weight: 500;
-      opacity: .75;
-      margin-top: 5px;
-    }
+    .brand { font-size: 21px; font-weight: 800; padding: 4px 10px 30px; }
+    .brand small { display: block; font-size: 11px; font-weight: 500; opacity: .75; margin-top: 5px; }
 
     .nav a {
       display: block;
@@ -72,15 +54,9 @@
       border-radius: 11px;
       font-size: 14px;
     }
+    .nav a.active, .nav a:hover { background: #ffffff24; }
 
-    .nav a.active,
-    .nav a:hover {
-      background: #ffffff24;
-    }
-
-    .main {
-      margin-left: 235px;
-    }
+    .main { margin-left: 235px; }
 
     .topbar {
       min-height: 66px;
@@ -96,17 +72,29 @@
       z-index: 5;
     }
 
-    .topbar span {
+    /* Profile (top right) */
+    .profile { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .profile #greeting {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--ink);
+      font-weight: 700;
+      overflow-wrap: anywhere;
       text-align: right;
     }
-
-    .content {
-      max-width: 1500px;
-      margin: auto;
-      padding: 27px 30px 45px;
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
     }
+
+    .content { max-width: 980px; margin: auto; padding: 27px 30px 45px; }
 
     .heading {
       display: flex;
@@ -115,7 +103,6 @@
       gap: 20px;
       margin-bottom: 22px;
     }
-
     .eyebrow {
       font-size: 11px;
       letter-spacing: 1.5px;
@@ -123,18 +110,8 @@
       color: var(--purple);
       font-weight: 800;
     }
-
-    .heading h1 {
-      font-size: 29px;
-      margin: 7px 0;
-    }
-
-    .heading p {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0;
-      line-height: 1.6;
-    }
+    .heading h1 { font-size: 29px; margin: 7px 0; }
+    .heading p { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.6; }
 
     .status {
       font-size: 12px;
@@ -148,26 +125,66 @@
       max-width: 260px;
     }
 
-    .scenario {
-      display: flex;
+    .stack { display: flex; flex-direction: column; gap: 16px; }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      min-width: 0;
+      box-shadow: 0 5px 18px #35206406;
+    }
+    .card h2 { font-size: 16px; margin: 0 0 14px; }
+
+    .desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 12px 0 0; overflow-wrap: anywhere; }
+
+    .empty, .error {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+      padding: 6px 0;
+      overflow-wrap: anywhere;
+    }
+    .error { color: #b42318; }
+
+    /* ---------- 1. Identified skills ---------- */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin: 20px 0;
+      padding: 7px 12px;
+      border-radius: 99px;
+      background: #efe9fd;
+      color: #5b21b6;
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    .scenario strong {
-      font-size: 13px;
+    /* ---------- 2. Trend signals ---------- */
+    .trend-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .trend-box { border-radius: 12px; padding: 14px; min-width: 0; background: #f3effb; }
+    .trend-box.rising { background: #e4f7f2; }
+    .trend-box.declining { background: #fdeee4; }
+    .trend-box h3 { font-size: 12px; margin: 0 0 10px; }
+    .trend-box.rising h3 { color: var(--teal); }
+    .trend-box.declining h3 { color: var(--orange); }
+    .trend-box ul { list-style: none; margin: 0; padding: 0; }
+    .trend-box li {
+      font-size: 12px;
+      padding: 3px 0 3px 12px;
+      position: relative;
+      overflow-wrap: anywhere;
     }
+    .trend-box li::before { content: "•"; position: absolute; left: 0; }
+    .trend-box .empty { font-size: 11px; padding: 0; }
 
-    .switch {
-      display: flex;
-      gap: 4px;
-      background: #ece5fa;
-      padding: 4px;
-      border-radius: 12px;
-    }
+    .sources { font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+    .sources a { color: var(--purple); }
 
+    /* ---------- 3. Outlook ---------- */
+    .switch { display: inline-flex; gap: 4px; background: #ece5fa; padding: 4px; border-radius: 12px; margin-bottom: 18px; }
     .switch button {
       border: 0;
       border-radius: 9px;
@@ -177,124 +194,45 @@
       font-size: 12px;
       font-weight: 750;
     }
-
-    .switch button.active {
-      background: var(--purple);
-      color: white;
-    }
-
-    .switch button:focus-visible,
-    .nav a:focus-visible {
+    .switch button.active { background: var(--purple); color: #fff; }
+    .switch button:focus-visible, .nav a:focus-visible {
       outline: 3px solid #c4b5fd;
       outline-offset: 3px;
     }
 
-    .notice {
-      padding: 13px 16px;
-      border: 1px solid #ddd0fa;
-      background: #f0eaff;
-      border-radius: 12px;
-      color: #5b477a;
-      font-size: 12px;
-      line-height: 1.6;
-      margin-bottom: 18px;
-      overflow-wrap: anywhere;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 19px;
-      min-width: 0;
-      box-shadow: 0 5px 18px #35206406;
-    }
-
-    .card h2 {
-      font-size: 16px;
-      margin: 0 0 6px;
-    }
-
-    .desc {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin: 0 0 16px;
-    }
-
-    .metric {
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .metric-label {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .metric-row {
+    .table-head {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #f0ecf8;
-      margin-bottom: 12px;
-    }
-
-    .mini-label {
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .8px;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f0ecf8;
     }
-
-    .skill {
+    .skill-list { max-height: 560px; overflow: auto; }
+    .skill-row {
+      display: grid;
+      grid-template-columns: minmax(110px, 190px) 1fr 70px;
+      align-items: center;
+      gap: 14px;
       padding: 12px 0;
       border-bottom: 1px solid #f1edf8;
-    }
-
-    .skill:last-child {
-      border-bottom: 0;
-    }
-
-    .skill-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
       font-size: 12px;
-      font-weight: 700;
     }
-
-    .skill-head>span:first-child {
-      overflow-wrap: anywhere;
-    }
-
-    .pct {
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
+    .skill-row:last-child { border-bottom: 0; }
+    .skill-name { overflow-wrap: anywhere; }
+    .skill-name em {
+      display: inline-block;
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 750;
       color: var(--purple);
-    }
-
-    .bar {
-      height: 7px;
-      background: #eee9f8;
+      background: #efe9fd;
       border-radius: 99px;
-      overflow: hidden;
-      margin-top: 9px;
+      padding: 2px 7px;
+      margin-left: 6px;
     }
-
+    .bar { height: 7px; background: #eee9f8; border-radius: 99px; overflow: hidden; }
     .bar span {
       height: 100%;
       display: block;
@@ -302,171 +240,31 @@
       background: linear-gradient(90deg, #7c3aed, #b197fc);
       transition: width .3s ease;
     }
+    .score { font-weight: 800; text-align: right; white-space: nowrap; }
 
-    .subline {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 7px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    .pill {
-      display: inline-block;
-      font-size: 10px;
-      padding: 4px 8px;
-      border-radius: 99px;
-      background: #e4f7f2;
-      color: var(--teal);
-      font-weight: 750;
-      margin-top: 7px;
-    }
-
-    .empty,
-    .error {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-      padding: 12px 0;
-      overflow-wrap: anywhere;
-    }
-
-    .error {
-      color: #b42318;
-    }
-
-    .span2 {
-      grid-column: span 2;
-    }
-
-    .skill-list {
-      max-height: 560px;
-      overflow: auto;
-    }
-
-    .footer-note {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-top: 18px;
-    }
-
-    .source-link {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 10px;
-      color: var(--purple);
-      text-decoration: none;
-    }
-
-    .source-link:hover {
-      text-decoration: underline;
-    }
-
-    .loading {
-      opacity: .7;
-    }
-
-    .toprow {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .count {
-      font-size: 10px;
-      color: var(--muted);
-      background: #f3effb;
-      padding: 5px 8px;
-      border-radius: 99px;
-      white-space: nowrap;
-    }
+    .loading { opacity: .7; }
 
     @media(max-width: 1100px) {
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .span2 {
-        grid-column: span 2;
-      }
-
-      .sidebar {
-        width: 205px;
-      }
-
-      .main {
-        margin-left: 205px;
-      }
-
-      .content {
-        padding: 24px 20px 36px;
-      }
+      .sidebar { width: 205px; }
+      .main { margin-left: 205px; }
+      .content { padding: 24px 20px 36px; }
     }
 
     @media(max-width: 720px) {
-      .sidebar {
-        position: static;
-        width: auto;
-        padding: 13px 16px;
-      }
-
-      .brand {
-        padding: 4px 5px 12px;
-      }
-
-      .nav {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .nav a {
-        padding: 9px 10px;
-      }
-
-      .main {
-        margin-left: 0;
-      }
-
-      .topbar {
-        padding: 12px 16px;
-      }
-
-      .content {
-        padding: 20px 14px 32px;
-      }
-
-      .heading {
-        display: block;
-      }
-
-      .status {
-        display: inline-block;
-        margin-top: 13px;
-        max-width: 100%;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .span2 {
-        grid-column: auto;
-      }
-
-      .scenario {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .switch {
-        width: 100%;
-      }
-
-      .switch button {
-        flex: 1;
-      }
+      .sidebar { position: static; width: auto; padding: 13px 16px; }
+      .brand { padding: 4px 5px 12px; }
+      .nav { display: flex; flex-wrap: wrap; }
+      .nav a { padding: 9px 10px; }
+      .main { margin-left: 0; }
+      .topbar { padding: 12px 16px; }
+      .content { padding: 20px 14px 32px; }
+      .heading { display: block; }
+      .status { display: inline-block; margin-top: 13px; max-width: 100%; }
+      .trend-grid { grid-template-columns: 1fr; }
+      .skill-row { grid-template-columns: 1fr 60px; }
+      .skill-row .bar { grid-column: 1 / -1; grid-row: 2; }
+      .switch { width: 100%; }
+      .switch button { flex: 1; }
     }
   </style>
 </head>
@@ -490,7 +288,10 @@
     <main class="main">
       <header class="topbar">
         <strong>Skills Intelligence</strong>
-        <span id="apiStatus" aria-live="polite">Connecting to backend…</span>
+        <div class="profile">
+          <span id="greeting" aria-live="polite">Hi!</span>
+          <div class="avatar" id="avatar" aria-hidden="true">?</div>
+        </div>
       </header>
 
       <div class="content">
@@ -498,113 +299,57 @@
           <div>
             <div class="eyebrow">Your Career Snapshot</div>
             <h1>AI &amp; Skills Trend Signals</h1>
-            <p>
-              Understand the skills evidenced in your CV and explore
-              skill outlook scores across different scenarios.
-            </p>
+            <p>See the skills identified from your CV, published trend signals, and skill outlook by AI scenario.</p>
           </div>
-
           <div class="status" id="cvStatus">CV: Not uploaded</div>
         </section>
 
-        <section class="scenario">
-          <strong>AI Disruption Scenarios</strong>
+        <div class="stack" id="page">
 
-          <div class="switch" role="group" aria-label="AI disruption scenario">
-            <button type="button" class="active" data-scenario="moderate" aria-pressed="true">
-              Moderate
-            </button>
+          <!-- 1. Your identified skills -->
+          <section class="card" aria-labelledby="h-skills">
+            <h2 id="h-skills">1. Your identified skills</h2>
+            <div id="cvSkills" class="chips">
+              <p class="empty">Loading your skills…</p>
+            </div>
+            <p class="desc">Skills identified automatically from your CV.</p>
+          </section>
 
-            <button type="button" data-scenario="fast" aria-pressed="false">
-              Fast
-            </button>
-          </div>
-        </section>
+          <!-- 2. Published trend signals -->
+          <section class="card" aria-labelledby="h-trends">
+            <h2 id="h-trends">2. Published trend signals</h2>
 
-        <div class="notice" id="scenarioDescription" aria-live="polite">
-          Loading scenario data from the backend…
-        </div>
-
-        <section class="grid">
-          <article class="card">
-            <div class="metric-row">
-              <div>
-                <h2>CV Evidence Score</h2>
-                <div class="metric-label">
-                  Evidence score for each skill detected in your CV
-                </div>
+            <div class="trend-grid">
+              <div class="trend-box rising">
+                <h3>▲ Rising</h3>
+                <div id="risingSkills"><p class="empty">Loading data…</p></div>
               </div>
-
-              <span class="count" id="cvSkillCount">0 skills</span>
+              <div class="trend-box declining">
+                <h3>▼ Declining</h3>
+                <div id="decliningSkills"><p class="empty">Loading data…</p></div>
+              </div>
             </div>
 
-            <div id="cvSkills" class="skill-list">
-              <div class="empty">Loading CV scores…</div>
-            </div>
-          </article>
+            <div class="sources" id="trendSources"></div>
+            <p class="desc" id="trendNote">Showing skills across our reference dataset, not only skills identified in your profile.</p>
+          </section>
 
-          <article class="card">
-            <div class="toprow">
-              <h2>Rising Skills</h2>
-              <span class="count">Trend CSV</span>
-            </div>
+          <!-- 3. Skill outlook by scenario -->
+          <section class="card" aria-labelledby="h-outlook">
+            <h2 id="h-outlook">3. Skill outlook by scenario</h2>
 
-            <p class="desc">
-              Skills identified as rising based on the trend labels in your data.
-            </p>
-
-            <div id="risingSkills">
-              <div class="empty">Loading data…</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="toprow">
-              <h2>Declining Skills</h2>
-              <span class="count">Trend CSV</span>
+            <div class="switch" role="group" aria-label="AI disruption scenario">
+              <button type="button" class="active" data-scenario="moderate" aria-pressed="true">Moderate AI</button>
+              <button type="button" data-scenario="fast" aria-pressed="false">Fast AI</button>
             </div>
 
-            <p class="desc">
-              Skills identified as declining based on the trend labels in your data.
-            </p>
+            <div class="table-head"><span>Skill</span><span>Scenario score</span></div>
+            <div id="outlookSkills" class="skill-list"><p class="empty">Loading data…</p></div>
 
-            <div id="decliningSkills">
-              <div class="empty">Loading data…</div>
-            </div>
-          </article>
+            <p class="desc" id="scenarioDescription">Loading scenario data from the backend…</p>
+          </section>
 
-          <article class="card span2">
-            <div class="toprow">
-              <h2>Skill Outlook by Scenario</h2>
-              <span class="count" id="scenarioCount">—</span>
-            </div>
-
-            <p class="desc">
-               All predictions are estimates
-            </p>
-
-            <div id="outlookSkills" class="skill-list">
-              <div class="empty">Loading data…</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <h2>Resilient Skills</h2>
-
-            <p class="desc">
-              Skills with a scenario score of at least 60% in both scenarios.
-            </p>
-
-            <div id="resilientSkills">
-              <div class="empty">Loading data…</div>
-            </div>
-          </article>
-        </section>
-
-        <p class="footer-note" id="dataNote">
-          Data is retrieved from the backend API. Scores do not guarantee
-          employment or represent certain market predictions.
-        </p>
+        </div>
       </div>
     </main>
   </div>
@@ -613,201 +358,216 @@
     const $ = id => document.getElementById(id);
 
     let selectedScenario = 'moderate';
+    let cvSkills = [];            // nama skill dari CV pengguna
+    let trendData = null;         // response backend terakhir
 
-    function safeText(value) {
-      return String(value ?? '');
-    }
+    const norm = s => String(s ?? '').trim().toLowerCase();
+    const itemName = i => typeof i === 'string' ? i : (i && (i.name || i.skill)) || '';
 
     function renderMessage(id, message, isError = false) {
       const el = $(id);
       if (!el) return;
-
       el.replaceChildren();
-
       const p = document.createElement('p');
       p.className = isError ? 'error' : 'empty';
       p.textContent = message;
-
       el.appendChild(p);
     }
 
-    function renderSkillRows(id, items, options = {}) {
-      const container = $(id);
-      if (!container) return;
+    /* ---------- Data CV (dari sessionStorage, asing bagi setiap pengguna/tab) ---------- */
+    function loadCV() {
+      let skills = null;
+      let filename = '';
+      try {
+        skills = JSON.parse(sessionStorage.getItem('cvSkills') || 'null');
+        filename = sessionStorage.getItem('cvFilename') || '';
+      } catch (e) {
+        console.warn('Invalid CV data:', e);
+      }
 
-      container.replaceChildren();
+      // Belum upload CV -> hantar balik ke halaman upload
+      if (!Array.isArray(skills)) {
+        window.location.replace('/');
+        return false;
+      }
 
-      if (!Array.isArray(items) || items.length === 0) {
-        renderMessage(
-          id,
-          options.empty || 'No data available for this category.'
-        );
+      cvSkills = [...new Set(skills.map(itemName).filter(Boolean))];
+      $('cvStatus').textContent = filename ? `CV: ${filename}` : 'CV: Analysed';
+      renderChips();
+      return true;
+    }
+
+    function renderChips() {
+      const box = $('cvSkills');
+      box.replaceChildren();
+
+      if (!cvSkills.length) {
+        renderMessage('cvSkills', 'No skills were detected in your CV.');
+        return;
+      }
+      cvSkills.forEach(name => {
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = name;
+        box.appendChild(chip);
+      });
+    }
+
+    /* ---------- Profile (nama dari CV) ---------- */
+    function nameFromFileName(fileName) {
+      const cleaned = String(fileName)
+        .replace(/\.[a-z0-9]{2,5}$/i, '')
+        .replace(/^\s*(cv|resume|curriculum vitae)\s*[:\-_.]*\s*/i, '')
+        .replace(/[_\-.]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      return cleaned.toLowerCase().replace(/\b\p{L}/gu, c => c.toUpperCase());
+    }
+
+    function readCandidateName() {
+      try {
+        const saved = (sessionStorage.getItem('candidate_name') || '').trim();
+        if (saved) return saved;                                   // nama dari CV (kalau backend hantar)
+        return nameFromFileName(sessionStorage.getItem('cvFilename') || '');
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function renderProfile() {
+      const name = readCandidateName();
+      $('greeting').textContent = name ? `Hi, ${name}` : 'Hi!';
+      $('avatar').textContent = name
+        ? name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()
+        : '?';
+    }
+
+    /* ---------- Trend signals ---------- */
+    function renderPlainList(id, items, emptyText) {
+      const box = $(id);
+      box.replaceChildren();
+
+      const names = (items || []).map(itemName).filter(Boolean);
+      if (!names.length) {
+        renderMessage(id, emptyText);
         return;
       }
 
-      const shown = options.limit
-        ? items.slice(0, options.limit)
-        : items;
+      const ul = document.createElement('ul');
+      names.forEach(n => {
+        const li = document.createElement('li');
+        li.textContent = n;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+    }
 
-      shown.forEach(item => {
+    function renderSources(data) {
+      const box = $('trendSources');
+      box.replaceChildren();
+
+      const seen = new Map();
+
+      function addSource(href, label) {
+        if (!href) return;
+        try {
+          const url = new URL(String(href), window.location.origin);
+          if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+          if (!seen.has(url.href)) seen.set(url.href, label || url.hostname);
+        } catch (e) {
+          console.warn('Invalid source URL:', e);
+        }
+      }
+
+      function fromItem(item) {
+        if (!item || typeof item !== 'object') return;
+        const href = item.source_url || item.sourceUrl || item.url || item.link;
+        const name = item.source_name || item.sourceName ||
+          (typeof item.source === 'string' && !/^https?:/i.test(item.source) ? item.source : '');
+        const date = item.source_date || item.sourceDate || item.published || item.date;
+        addSource(href || (typeof item.source === 'string' && /^https?:/i.test(item.source) ? item.source : ''),
+          [name, date].filter(Boolean).join(', '));
+      }
+
+      [data.rising, data.declining, data.all_skills].forEach(list => {
+        if (Array.isArray(list)) list.forEach(fromItem);
+      });
+
+      if (Array.isArray(data.sources)) data.sources.forEach(fromItem);
+      fromItem({ source_url: data.source_url, source_name: data.source_name, source_date: data.source_date });
+      if (typeof data.source === 'string') fromItem({ source: data.source });
+      else fromItem(data.source);
+
+      if (!seen.size) {
+        box.textContent = 'Source: not provided by the backend for this data.';
+        return;
+      }
+
+      box.append(document.createTextNode('Source: '));
+      let first = true;
+      seen.forEach((label, href) => {
+        if (!first) box.append(document.createTextNode(' · '));
+        first = false;
+        const a = document.createElement('a');
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = label;
+        box.appendChild(a);
+      });
+    }
+
+    /* ---------- Outlook ---------- */
+    function toPercent(raw, asFraction) {
+      const n = Number(raw);
+      if (!Number.isFinite(n)) return null;
+      return Math.max(0, Math.min(100, asFraction ? n * 100 : n));
+    }
+
+    function renderOutlook() {
+      const box = $('outlookSkills');
+      if (!trendData) return;
+      box.replaceChildren();
+
+      const all = Array.isArray(trendData.all_skills) ? trendData.all_skills : [];
+      if (!all.length) {
+        renderMessage('outlookSkills', 'No scenario data is available for this scenario.');
+        return;
+      }
+
+      const mine = new Set(cvSkills.map(norm));
+      const nums = all.map(i => Number(i.score)).filter(Number.isFinite);
+      const asFraction = nums.length > 0 && Math.max(...nums) <= 1;
+      const rows = all
+        .map(item => ({ name: itemName(item), pct: toPercent(item.score, asFraction) }))
+        .filter(r => r.name)
+        .sort((a, b) => (mine.has(norm(b.name)) - mine.has(norm(a.name))));
+
+      rows.forEach(r => {
         const row = document.createElement('div');
-        row.className = 'skill';
+        row.className = 'skill-row';
 
-        const head = document.createElement('div');
-        head.className = 'skill-head';
-
-        const name = document.createElement('span');
-        name.textContent = safeText(item.name || item.skill || 'Unnamed skill');
-
-        const rawScore = Number(item.score);
-        const score = Number.isFinite(rawScore)
-          ? Math.max(0, Math.min(100, rawScore))
-          : 0;
-
-        const pct = document.createElement('span');
-        pct.className = 'pct';
-        pct.textContent = `${Math.round(score)}%`;
-
-        head.append(name, pct);
-        row.appendChild(head);
+        const name = document.createElement('div');
+        name.className = 'skill-name';
+        name.textContent = r.name;
+        if (mine.has(norm(r.name))) {
+          const tag = document.createElement('em');
+          tag.textContent = 'Your skill';
+          name.appendChild(tag);
+        }
 
         const bar = document.createElement('div');
         bar.className = 'bar';
-
         const fill = document.createElement('span');
-        fill.style.width = `${score}%`;
-
+        fill.style.width = `${r.pct ?? 0}%`;
         bar.appendChild(fill);
-        row.appendChild(bar);
 
-        const evidence = Array.isArray(item.evidence)
-          ? item.evidence
-          : [];
+        const score = document.createElement('div');
+        score.className = 'score';
+        score.textContent = r.pct === null ? '—' : `${Math.round(r.pct)}%`;
 
-        if (item.level || evidence.length) {
-          const detail = document.createElement('div');
-          detail.className = 'subline';
-
-          detail.textContent = [
-            item.level ? `Evidence level: ${item.level}` : '',
-            ...evidence.map(safeText)
-          ].filter(Boolean).join(' · ');
-
-          row.appendChild(detail);
-        }
-
-        if (item.source_url) {
-          try {
-            const url = new URL(item.source_url, window.location.origin);
-
-            if (url.protocol === 'http:' || url.protocol === 'https:') {
-              const link = document.createElement('a');
-              link.className = 'source-link';
-              link.href = url.href;
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              link.textContent = 'Data source';
-
-              row.appendChild(link);
-            }
-          } catch (error) {
-            console.warn('Invalid source URL:', error);
-          }
-        }
-
-        container.appendChild(row);
-      });
-    }
-
-    function renderNameList(id, names) {
-      const container = $(id);
-      if (!container) return;
-
-      container.replaceChildren();
-
-      if (!Array.isArray(names) || names.length === 0) {
-        renderMessage(
-          id,
-          'No skills have reached 60% in both scenarios.'
-        );
-        return;
-      }
-
-      names.forEach(item => {
-        const name = typeof item === 'string'
-          ? item
-          : item.name || item.skill || '';
-
-        if (!name) return;
-
-        const tag = document.createElement('span');
-        tag.textContent = name;
-
-        tag.style.cssText =
-          'display:inline-block;margin:0 6px 8px 0;' +
-          'padding:7px 10px;border-radius:99px;' +
-          'background:#e4f7f2;color:#0f766e;' +
-          'font-size:11px;font-weight:700;';
-
-        container.appendChild(tag);
-      });
-
-      if (!container.children.length) {
-        renderMessage(
-          id,
-          'No resilient skills are currently available.'
-        );
-      }
-    }
-
-    function readStoredCV() {
-      for (const storage of [sessionStorage, localStorage]) {
-        try {
-          const scores = JSON.parse(
-            storage.getItem('skill_scores') || 'null'
-          );
-
-          if (Array.isArray(scores)) {
-            return {
-              scores,
-              filename: storage.getItem('cvFilename') || ''
-            };
-          }
-        } catch (error) {
-          console.warn('Invalid CV score data:', error);
-        }
-      }
-
-      return {
-        scores: null,
-        filename: ''
-      };
-    }
-
-    async function loadCVScores() {
-      const saved = readStoredCV();
-
-      if (saved.scores === null) {
-        $('cvStatus').textContent = 'CV: Not analysed';
-        $('cvSkillCount').textContent = '0 skills';
-
-        renderMessage(
-          'cvSkills',
-          'No CV scores found. Return to the CV upload page and upload a PDF or DOCX file.'
-        );
-
-        return;
-      }
-
-      $('cvStatus').textContent = saved.filename
-        ? `CV: ${saved.filename}`
-        : 'CV: Analysed';
-
-      $('cvSkillCount').textContent =
-        `${saved.scores.length} skills`;
-
-      renderSkillRows('cvSkills', saved.scores, {
-        empty: 'The CV was processed, but no matching skills were found.'
+        row.append(name, bar, score);
+        box.appendChild(row);
       });
     }
 
@@ -816,112 +576,57 @@
 
       document.querySelectorAll('[data-scenario]').forEach(button => {
         const active = button.dataset.scenario === scenario;
-
         button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
       });
 
-      $('apiStatus').textContent = 'Loading backend data…';
-      document.querySelector('.content').classList.add('loading');
+      $('page').classList.add('loading');
 
       try {
         const response = await fetch(
           `/api/dashboard-trends?scenario=${encodeURIComponent(scenario)}`,
-          {
-            headers: {
-              'Accept': 'application/json'
-            }
-          }
+          { headers: { 'Accept': 'application/json' } }
         );
 
         const data = await response.json();
+        if (!response.ok) throw new Error(data.error || `Request failed (${response.status})`);
 
-        if (!response.ok) {
-          throw new Error(
-            data.error || `Request failed (${response.status})`
-          );
-        }
+        trendData = data;
 
-        $('apiStatus').textContent =
-          `Backend connected · ${data.total_skills ?? 0} skills`;
+        renderPlainList('risingSkills', data.rising, 'No rising skills in the data currently displayed.');
+        renderPlainList('decliningSkills', data.declining, 'No declining skills in the data currently displayed.');
+        renderSources(data);
+        renderOutlook();
 
-        $('scenarioDescription').textContent = [
-          data.title,
-          data.description,
-          data.note
-        ].filter(Boolean).join(' ');
-
-        $('scenarioCount').textContent =
-          scenario === 'moderate'
-            ? 'Moderate Scenario'
-            : 'Fast Scenario';
-
-        renderSkillRows('risingSkills', data.rising, {
-          empty: 'No rising trend labels were found in trends.csv.'
-        });
-
-        renderSkillRows('decliningSkills', data.declining, {
-          empty: 'No declining trend labels were found in trends.csv.'
-        });
-
-        renderSkillRows('outlookSkills', data.all_skills, {
-          limit: 20,
-          empty: 'No scenario_toggle.csv data is available.'
-        });
-
-        renderNameList('resilientSkills', data.resilient);
-
-        $('dataNote').textContent =
-          `Trend data is matched from CSV files. The outlook shows ` +
-          `${scenario} scenario scores, not job growth rates. ` +
-          `Sources and dates are shown when available.`;
+        $('scenarioDescription').textContent = [data.title, data.description, data.note]
+          .filter(Boolean).join(' ') ||
+          'Team-estimated skill demand under the selected scenario, not your proficiency or a prediction.';
 
       } catch (error) {
         console.error('Dashboard API error:', error);
-
-        $('apiStatus').textContent = 'Backend error';
+        trendData = null;
 
         $('scenarioDescription').textContent =
-          `Unable to load dashboard data: ${error.message}. ` +
-          'Check that Flask is running and the CSV files are available.';
+          `Unable to load dashboard data: ${error.message}. Check that Flask is running and the CSV files are available.`;
 
-        renderMessage(
-          'risingSkills',
-          'Unable to load data from the backend.',
-          true
+        ['risingSkills', 'decliningSkills', 'outlookSkills'].forEach(id =>
+          renderMessage(id, 'Unable to load data from the backend.', true)
         );
-
-        renderMessage(
-          'decliningSkills',
-          'Unable to load data from the backend.',
-          true
-        );
-
-        renderMessage(
-          'outlookSkills',
-          'Unable to load data from the backend.',
-          true
-        );
-
-        renderMessage(
-          'resilientSkills',
-          'Unable to load data from the backend.',
-          true
-        );
-
+        $('trendSources').replaceChildren();
       } finally {
-        document.querySelector('.content').classList.remove('loading');
+        $('page').classList.remove('loading');
       }
     }
 
     document.querySelectorAll('[data-scenario]').forEach(button => {
-      button.addEventListener('click', () => {
-        loadScenario(button.dataset.scenario);
-      });
+      button.addEventListener('click', () => loadScenario(button.dataset.scenario));
     });
 
-    loadCVScores();
-    loadScenario(selectedScenario);
+    /* ---------- Start ---------- */
+    if (loadCV()) {
+      renderProfile();
+      loadScenario(selectedScenario);
+    }
   </script>
 </body>
 
