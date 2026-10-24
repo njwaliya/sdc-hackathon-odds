@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FuturePath AI | Role Matching</title>
+
+  <style>
+    /* ==========================================================
+       DESIGN TOKENS
+       Colours are defined once here so the whole page can be
+       re-themed by changing these values only.
+       ========================================================== */
+    :root {
+      --purple: #6d28d9;
+      --purple2: #8b5cf6;
+      --ink: #24133f;
+      --muted: #746887;
+      --bg: #f7f5fc;
+      --line: #e8e1f4;
+      --teal: #0f8a78;
+      --orange: #c65a22;
+      --white: #fff;
+    }
+
+    /* Include padding and border in element widths so layouts don't overflow. */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Base page styles. The font stack matches the dashboard page. */
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Make buttons and dropdowns inherit the page font and show a pointer. */
+    button,
+    select {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* ==========================================================
+       SIDEBAR NAVIGATION
+       Fixed to the left edge, with the purple gradient theme.
+       ========================================================== */
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 235px;
+      background: linear-gradient(165deg, #4c1d95, #6d28d9 55%, #3b0764);
+      padding: 25px 17px;
+      color: #fff;
+      z-index: 10;
+    }
+
+    /* FIX: the original JS toggled a "hidden" class on desktop but no CSS
+       existed for it, so the sidebar never actually hid. This rule slides
+       the sidebar off-screen when that class is present. */
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    /* Logo and tagline at the top of the sidebar. */
+    .brand {
+      font-size: 21px;
+      font-weight: 700;
+      margin: 0 10px 35px;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 7px;
+      color: #e9d5ff;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    /* Navigation links. */
+    .nav a {
+      display: block;
+      padding: 13px 12px;
+      margin: 5px 0;
+      border-radius: 10px;
+      color: #f3e8ff;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    /* Hover state and the highlighted "current page" state. */
+    .nav a:hover,
+    .nav a.active {
+      background: #ffffff30;
+      color: white;
+    }
+
+    /* ==========================================================
+       MAIN CONTENT AREA
+       Leaves room for the sidebar; expands when the sidebar hides.
+       ========================================================== */
+    .main {
+      margin-left: 245px;
+      padding: 25px 32px 40px;
+      transition: margin .25s;
+    }
+
+    .main.expanded {
+      margin-left: 0;
+    }
+
+    /* Shared flex layout used by several horizontal rows on the page. */
+    .topbar,
+    .top-left,
+    .heading,
+    .panel-heading,
+    .actions,
+    .gap-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .topbar {
+      margin-bottom: 28px;
+    }
+
+    /* Left side of the top bar keeps its items packed to the left. */
+    .top-left {
+      justify-content: flex-start;
+    }
+
+    /* Hamburger button that toggles the sidebar. */
+    .menu-button {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--purple);
+      border-radius: 10px;
+      padding: 10px 13px;
+      font-size: 17px;
+    }
+
+    /* Helper / secondary text colour shared by several elements. */
+    .breadcrumb,
+    .subtitle,
+    .panel-heading p,
+    .role-description,
+    .note {
+      color: var(--muted);
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    /* Round "U" user badge in the top right. */
+    .avatar {
+      background: #ede9fe;
+      color: var(--purple);
+      padding: 12px;
+      border-radius: 50%;
+      font-weight: 700;
+    }
+
+    /* ==========================================================
+       PAGE HEADING
+       ========================================================== */
+    .heading {
+      margin-bottom: 25px;
+    }
+
+    /* Small uppercase label above the page title. */
+    .eyebrow {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    h1 {
+      font-size: 29px;
+      margin: 10px 0;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================
+       SUMMARY CARDS
+       Three cards whose values are calculated from the API response.
+       ========================================================== */
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #eee4ff;
+      background: linear-gradient(135deg, white, #faf5ff);
+    }
+
+    .summary-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .summary-card h2 {
+      font-size: 25px;
+      margin: 10px 0 5px;
+      overflow-wrap: anywhere;
+      /* stop long values from breaking the layout */
+    }
+
+    .summary-card small {
+      color: #16845b;
+      font-size: 11px;
+    }
+
+    /* ==========================================================
+       MAIN TWO-COLUMN LAYOUT
+       Left: recommended roles. Right: skills gap overview.
+       ========================================================== */
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+      gap: 18px;
+    }
+
+    /* White rounded card used for both columns. */
+    .panel {
+      min-width: 0;
+      /* allows grid children to shrink instead of overflowing */
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 22px;
+      box-shadow: 0 5px 20px #3b076408;
+    }
+
+    .panel-heading {
+      margin-bottom: 18px;
+    }
+
+    .panel-heading h2 {
+      font-size: 16px;
+      margin: 0 0 6px;
+    }
+
+    .panel-heading p {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    /* Small purple pill label (e.g. "Live API"). */
+    .tag {
+      background: #f3e8ff;
+      color: var(--purple);
+      padding: 7px 9px;
+      border-radius: 7px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================
+       ROLE CARDS
+       Generated by JavaScript from the /api/match response.
+       ========================================================== */
+    .roles {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Each card: role details on the left, score on the right. */
+    .role-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 90px;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      transition: border-color .2s, background .2s;
+    }
+
+    .role-card:hover {
+      border-color: #c4b5fd;
+    }
+
+    /* Highlight the role the user has currently selected. */
+    .role-card.selected {
+      border: 1.5px solid #8b5cf6;
+      background: #fcfaff;
+    }
+
+    .role-card h3 {
+      font-size: 14px;
+      margin: 0 0 7px;
+    }
+
+    .role-description {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Wrapping row of small skill "chips". */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .skill-chip {
+      background: #f3f0f9;
+      color: #6d5b85;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    /* Right-hand score column of a role card. */
+    .match-score {
+      text-align: right;
+    }
+
+    .match-score strong {
+      color: var(--purple);
+      font-size: 22px;
+    }
+
+    .match-score small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* Thin progress bar under the score. */
+    .meter {
+      height: 5px;
+      background: #eee8f7;
+      border-radius: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #7c3aed, #c084fc);
+    }
+
+    /* Shared button shape for role-card buttons and page buttons. */
+    .select-button,
+    .button {
+      border-radius: 9px;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* "View skill gaps" button inside each role card. */
+    .select-button {
+      background: white;
+      color: var(--purple);
+      border: 1px solid #ddd6fe;
+      margin-top: 12px;
+    }
+
+    /* The button turns solid purple on the selected card. */
+    .selected .select-button {
+      background: var(--purple);
+      color: white;
+    }
+
+    /* ==========================================================
+       SKILL GAP LIST (right column)
+       ========================================================== */
+    .gap-item {
+      margin: 17px 0;
+      font-size: 12px;
+    }
+
+    .gap-item>div {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .gap-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 5px;
+    }
+
+    /* Priority badge colours: high = red, medium = amber, low = green. */
+    .priority {
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .high {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .low {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    /* Thin horizontal line between sections. */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    /* "Suggested next step" box. */
+    .tip {
+      padding: 14px;
+      border-radius: 11px;
+      background: #f5f0ff;
+      color: #5b21b6;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 18px;
+    }
+
+    /* ==========================================================
+       STATUS MESSAGE (loading / success / error)
+       ========================================================== */
+    .status {
+      padding: 14px;
+      border-radius: 10px;
+      background: #f5f0ff;
+      color: #5b21b6;
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 12px 0;
+    }
+
+    /* Red variant used when something goes wrong. */
+    .status.error {
+      background: #fff1f2;
+      color: #be123c;
+    }
+
+    /* ==========================================================
+       BOTTOM ACTION BUTTONS AND DISCLAIMER
+       ========================================================== */
+    .actions {
+      margin-top: 22px;
+    }
+
+    .button {
+      border: 0;
+      padding: 13px 17px;
+    }
+
+    /* Main call-to-action button with the purple gradient. */
+    .button-primary {
+      background: linear-gradient(100deg, #6d28d9, #a855f7);
+      color: white;
+    }
+
+    /* Outlined secondary button. */
+    .button-secondary {
+      border: 1px solid #ddd6fe;
+      background: white;
+      color: var(--purple);
+    }
+
+    .note {
+      font-size: 11px;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    /* Greyed-out look for disabled buttons. */
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    /* ==========================================================
+       RESPONSIVE LAYOUT
+       ========================================================== */
+
+    /* Tablets and below: sidebar becomes an off-canvas drawer. */
+    @media (max-width: 950px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      /* ".open" is added by JavaScript to slide the drawer in.
+         It is written after ".sidebar.hidden" so it wins on mobile. */
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      /* Stack the two columns vertically. */
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Phones: single column everywhere and full-width buttons. */
+    @media (max-width: 580px) {
+      .main {
+        padding: 15px;
+      }
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .panel {
+        padding: 15px;
+      }
+
+      /* Primary button appears first on mobile (column-reverse). */
+      .actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+      }
+
+      .actions button {
+        width: 100%;
+      }
+
+      .role-card {
+        grid-template-columns: minmax(0, 1fr) 72px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ==========================================================
+       SIDEBAR
+       Links to the other pages of the app.
+       ========================================================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      ✦ FuturePath
+      <small>Your Skills. Your Future.</small>
+    </div>
+
+    <nav class="nav">
+      <a href="/dashboard.html">⌂ &nbsp; Dashboard</a>
+      <!-- "active" marks the page the user is currently on. -->
+      <a class="active" href="/rolematching.html">◎ &nbsp; Role Matching</a>
+      <a href="/reskilling.html">♧ &nbsp; Learning Pathway</a>
+      <a href="/">⇥ &nbsp; Upload CV</a>
+    </nav>
+  </aside>
+
+  <main class="main" id="main">
+    <!-- ========================================================
+         TOP BAR
+         Hamburger button, breadcrumb and user badge.
+         ======================================================== -->
+    <div class="topbar">
+      <div class="top-left">
+        <button class="menu-button" type="button" onclick="toggleSidebar()" aria-label="Toggle navigation">☰</button>
+        <div>
+          <div class="breadcrumb">Workspace / Career planning</div>
+          <b style="font-size:13px">Future Role Matching</b>
+        </div>
+      </div>
+
+      <!-- User profile badge. The initial and greeting are filled in by
+           renderProfile() using the name found in the uploaded CV.
+           Defaults ("U" / "Hi there") show if no name can be found. -->
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="avatar" id="avatar">U</div>
+        <div style="font-size:12px">
+          <b id="greeting">Hi there</b>
+          <div class="breadcrumb" style="margin:3px 0 0">My Career Plan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         PAGE HEADING
+         ======================================================== -->
+    <section class="heading">
+      <div>
+        <div class="eyebrow">STEP 03 · FIND YOUR NEXT ROLE</div>
+        <h1>Your future role matches</h1>
+        <div class="subtitle">
+          Explore recommended roles based on your CV skills and review the
+          skills you may need to develop next.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SUMMARY CARDS
+         The "—" placeholders are replaced once the API responds.
+         ======================================================== -->
+    <section class="summary">
+      <div class="summary-card">
+        <p>Roles matched</p>
+        <h2 id="roleCount">—</h2>
+        <small>From the matching API</small>
+      </div>
+
+      <div class="summary-card">
+        <p>Strongest match</p>
+        <h2 id="bestScore">—</h2>
+        <small id="bestRole">Waiting for results</small>
+      </div>
+
+      <div class="summary-card">
+        <p>Priority skills to build</p>
+        <h2 id="gapCount">—</h2>
+        <small>For the selected role</small>
+      </div>
+    </section>
+
+    <!-- Status line: shows loading, success and error messages.
+         aria-live makes screen readers announce changes. -->
+    <div id="pageStatus" class="status" role="status" aria-live="polite">
+      Loading your CV skills and matching roles…
+    </div>
+
+    <!-- ========================================================
+         MAIN CONTENT: ROLES (left) + SKILL GAPS (right)
+         ======================================================== -->
+    <section class="content">
+      <!-- Left column: recommended roles. -->
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Recommended roles</h2>
+            <p>Recommendations returned by the backend</p>
+          </div>
+          <span class="tag">Live API</span>
+        </div>
+
+        <!-- JavaScript builds one card per role here from /api/match results. -->
+        <div class="roles" id="roles"></div>
+      </div>
+
+      <!-- Right column: skills gap for the selected role. -->
+      <aside class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Skills gap overview</h2>
+            <p id="gapSubtitle">Select a recommended role</p>
+          </div>
+          <span class="tag">Skill gaps</span>
+        </div>
+
+        <!-- The selected role's skill gaps are rendered here. -->
+        <div id="gapList">
+          <p class="subtitle">Your skill gaps will appear here.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Skills that were detected from the uploaded CV. -->
+        <b style="font-size:12px">Skills detected from your CV</b>
+        <div class="skills" id="cvSkills">
+          <span class="subtitle">Loading CV skills…</span>
+        </div>
+
+        <div class="tip">
+          <b>Suggested next step</b><br>
+          Select a role, review the skill gaps and continue to your
+          learning pathway.
+        </div>
+      </aside>
+    </section>
+
+    <!-- ========================================================
+         BOTTOM ACTIONS
+         The primary button stays disabled until a role is available.
+         ======================================================== -->
+    <div class="actions">
+      <button class="button button-primary" id="pathwayButton" type="button" onclick="continuePathway()" disabled>
+        Build my reskilling pathway
+      </button>
+    </div>
+
+    <!-- Disclaimer text. Replaced by the backend's own disclaimer if it sends one. -->
+    <p class="note" id="disclaimer">
+      Role recommendations and skill gaps are based on the data returned
+      by the backend. Matching results depend on the CV skills detected
+      and the available role and trend data.
+    </p>
+  </main>
+
+  <script>
+    /*
+     * ==========================================================
+     * ROLE MATCHING PAGE: SCRIPT OVERVIEW
+     * ==========================================================
+     * 1. Read the CV skills saved in the browser after upload.
+     * 2. Send them (plus a fixed default scenario) to POST /api/match.
+     * 3. Render the returned roles, scores and skill gaps.
+     * 4. Save the chosen role so the Learning Pathway page can use it.
+     *
+     * No role data or scores are hard-coded: everything shown
+     * comes from the backend response.
+     */
+
+    // ----------------------------------------------------------
+    // PAGE STATE
+    // ----------------------------------------------------------
+    let matchResults = [];       // list of roles returned by the API
+    let selectedRoleIndex = 0;   // which role card is currently selected
+    let cvSkillNames = [];       // skill names read from browser storage
+
+    // The AI disruption toggle (Moderate / Fast) lives on the Dashboard,
+    // which already lists the skills that stay relevant under both scenarios.
+    // This page therefore has no toggle and always sends one fixed scenario,
+    // because the /api/match route expects a "scenario" value.
+    // Change this value if your backend should use a different default.
+    const DEFAULT_SCENARIO = "moderate";
+
+    // ----------------------------------------------------------
+    // SMALL HELPERS
+    // ----------------------------------------------------------
+
+    // Escape text before inserting backend data into HTML so that any
+    // special characters are shown as text and never run as markup.
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    // Show a loading / success / error message in the status box.
+    // Pass isError = true to use the red error style.
+    function setStatus(message, isError = false) {
+      const status = document.getElementById("pageStatus");
+      status.textContent = message;
+      status.classList.toggle("error", isError);
+      status.hidden = false;
+    }
+
+    // Reset the three summary cards to their empty state.
+    // FIX: the original kept showing old numbers after an error or an
+    // empty result, which was misleading.
+    function resetSummary() {
+      document.getElementById("roleCount").textContent = "—";
+      document.getElementById("bestScore").textContent = "—";
+      document.getElementById("bestRole").textContent = "Waiting for results";
+      document.getElementById("gapCount").textContent = "—";
+    }
+
+    // ----------------------------------------------------------
+    // USER PROFILE (greeting + avatar initial)
+    // ----------------------------------------------------------
+
+    // Convert "NURAINA HASSAN" or "nuraina_hassan" into "Nuraina Hassan".
+    function toTitleCase(text) {
+      return text
+        .toLowerCase()
+        .replace(/\b\p{L}/gu, letter => letter.toUpperCase());
+    }
+
+    // Turn an uploaded file name into a person's name.
+    // Example: "CV: NURAINA HASSAN.pdf" -> "Nuraina Hassan"
+    function nameFromFileName(fileName) {
+      const cleaned = String(fileName)
+        .replace(/\.[a-z0-9]{2,5}$/i, "")                 // remove ".pdf" / ".docx"
+        .replace(/^\s*(cv|resume|curriculum vitae)\s*[:\-_.]*\s*/i, "") // remove leading "CV:"
+        .replace(/[_\-.]+/g, " ")                         // underscores / dashes -> spaces
+        .replace(/\s+/g, " ")                             // collapse extra spaces
+        .trim();
+
+      return cleaned ? toTitleCase(cleaned) : "";
+    }
+
+    // Find the candidate's name saved in browser storage after CV upload.
+    // Order of attempts:
+    //   1. A saved name (several possible key names are checked)
+    //   2. A saved profile object that contains a name field
+    //   3. The uploaded CV file name (same source as "CV: NURAINA HASSAN.pdf")
+    // Returns "" if nothing is found.
+    function getCandidateName() {
+      try {
+        // 1. Plain-text name keys.
+        const nameKeys = ["cvName", "candidateName", "candidate_name", "userName", "name"];
+        for (const key of nameKeys) {
+          const value = sessionStorage.getItem(key) || localStorage.getItem(key);
+          if (value && value.trim()) return toTitleCase(value.trim());
+        }
+
+        // 2. A JSON object such as {"name": "..."} saved after upload.
+        const objectKeys = ["cvProfile", "cvData", "candidate", "uploadResult"];
+        for (const key of objectKeys) {
+          const raw = sessionStorage.getItem(key) || localStorage.getItem(key);
+          if (!raw) continue;
+
+          const parsed = JSON.parse(raw);
+          const found = parsed && (parsed.name || parsed.candidate_name || parsed.full_name);
+          if (found) return toTitleCase(String(found).trim());
+        }
+
+        // 3. Fall back to the uploaded file name.
+        const fileKeys = ["cvFileName", "cvFilename", "cv_filename", "uploadedFileName", "fileName", "filename"];
+        for (const key of fileKeys) {
+          const value = sessionStorage.getItem(key) || localStorage.getItem(key);
+          const fromFile = value ? nameFromFileName(value) : "";
+          if (fromFile) return fromFile;
+        }
+      } catch (error) {
+        // Corrupt JSON or blocked storage: fall through to the default.
+        console.error("Could not read the candidate name:", error);
+      }
+
+      return "";
+    }
+
+    // Show "Hi, <name>" and the name's first letter in the avatar circle.
+    // textContent is used (not innerHTML) so the name can never run as HTML.
+    function renderProfile() {
+      const name = getCandidateName();
+      if (!name) return; // keep the defaults: "U" and "Hi there"
+
+      document.getElementById("greeting").textContent = "Hi, " + name;
+      document.getElementById("avatar").textContent = name.charAt(0).toUpperCase();
+    }
+
+    // Desktop: toggles "hidden" on the sidebar and "expanded" on the content.
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+
+      if (window.innerWidth <= 950) {
+        sidebar.classList.toggle("open");
+      } else {
+        sidebar.classList.toggle("hidden");
+        main.classList.toggle("expanded");
+      }
+    }
+
+    // ----------------------------------------------------------
+    // READING THE CV SKILLS FROM BROWSER STORAGE
+    // ----------------------------------------------------------
+
+    // Read the skills saved after a successful CV upload.
+    // The backend expects a plain list of skill names (strings).
+    // Sources are tried in this order:
+    //   1. sessionStorage "cvSkills"      (list saved by /api/upload-cv)
+    //   2. sessionStorage "skill_scores"  (object whose keys are skill names)
+    //   3. localStorage   "cvSkills"      (fallback if one exists)
+    function getStoredSkills() {
+      let storedSkills = [];
+
+      try {
+        const savedNames = sessionStorage.getItem("cvSkills");
+        const savedScores = sessionStorage.getItem("skill_scores");
+
+        // Source 1: the skill-name list.
+        if (savedNames) {
+          const parsed = JSON.parse(savedNames);
+
+          if (Array.isArray(parsed)) {
+            storedSkills = parsed;
+          } else if (parsed && typeof parsed === "object") {
+            storedSkills = Object.keys(parsed);
+          }
+        }
+
+        // Source 2: the score object, using only its keys (skill names).
+        if (!storedSkills.length && savedScores) {
+          const parsedScores = JSON.parse(savedScores);
+
+          if (Array.isArray(parsedScores)) {
+            storedSkills = parsedScores;
+          } else if (parsedScores && typeof parsedScores === "object") {
+            storedSkills = Object.keys(parsedScores);
+          }
+        }
+
+        // Source 3: a skill list kept in localStorage.
+        if (!storedSkills.length) {
+          const localSkills = localStorage.getItem("cvSkills");
+
+          if (localSkills) {
+            const parsed = JSON.parse(localSkills);
+            if (Array.isArray(parsed)) storedSkills = parsed;
+          }
+        }
+      } catch (error) {
+        // Corrupt JSON or blocked storage: log it and carry on with no skills.
+        console.error("Could not read saved CV skills:", error);
+      }
+
+      // Keep only non-empty strings and remove duplicates.
+      return [...new Set(
+        storedSkills
+          .map(skill => typeof skill === "string" ? skill.trim() : "")
+          .filter(Boolean)
+      )];
+    }
+
+    // Show the skills detected from the uploaded CV as chips.
+    function renderCVSkills() {
+      const container = document.getElementById("cvSkills");
+
+      if (!cvSkillNames.length) {
+        container.innerHTML =
+          '<span class="subtitle">No saved CV skills found.</span>';
+        return;
+      }
+
+      container.innerHTML = cvSkillNames.map(skill =>
+        `<span class="skill-chip">${escapeHTML(skill)}</span>`
+      ).join("");
+    }
+
+    // ----------------------------------------------------------
+    // READING FIELDS FROM THE API RESPONSE
+    // (the backend may use different field names, so we check several)
+    // ----------------------------------------------------------
+
+    // Get a role's display name.
+    function getRoleName(role) {
+      return role.role_name || role.title || role.name || "Recommended role";
+    }
+
+    // Get a skill's display name. Skills can be plain strings or objects.
+    function getSkillName(skill) {
+      if (skill && typeof skill === "object") {
+        return skill.skill_name || skill.name || "";
+      }
+      return skill ? String(skill) : "";
+    }
+
+    // Get a match score as a percentage (0-100), or null if the backend
+    // did not send one. We never invent a score.
+    function getRoleScore(role) {
+      const rawScore = role.score ?? role.match_score ?? role.fit_score;
+
+      if (rawScore === undefined || rawScore === null || rawScore === "") {
+        return null;
+      }
+
+      const score = Number(rawScore);
+      if (!Number.isFinite(score)) return null;
+
+      // Values from 0 to 1 are treated as fractions (0.35 -> 35%).
+      // Larger values are treated as percentages already.
+      const percent = score >= 0 && score <= 1 ? score * 100 : score;
+
+      // Keep the result inside 0-100 so the progress bar never overflows.
+      return Math.max(0, Math.min(100, percent));
+    }
+
+    // Turn any value into a list so we can loop over it safely.
+    // Arrays stay as they are, empty values become [], single values
+    // become a one-item list. No content is invented.
+    function asList(value) {
+      if (Array.isArray(value)) return value;
+      if (value === undefined || value === null || value === "") return [];
+      return [value];
+    }
+
+    // ----------------------------------------------------------
+    // RENDERING: ROLE CARDS + SUMMARY
+    // ----------------------------------------------------------
+
+    // Draw the recommended role cards and update the first two summary cards.
+    // emptyMessage lets the caller change the text shown when there are no
+    // roles (for example a different message after an error).
+    function renderRoles(emptyMessage = "The API returned no matching roles.") {
+      const container = document.getElementById("roles");
+
+      // No roles: show a message and clear the summary cards.
+      if (!matchResults.length) {
+        container.innerHTML =
+          `<p class="subtitle">${escapeHTML(emptyMessage)}</p>`;
+        resetSummary();
+        return;
+      }
+
+      // Build one card per role.
+      container.innerHTML = matchResults.map((role, index) => {
+        const name = getRoleName(role);
+        const score = getRoleScore(role);
+        const description = role.description || role.role_type || "";
+        const selected = index === selectedRoleIndex;
+
+        // Skill chips for this role. Empty names are dropped so we never
+        // render blank chips.
+        const chipsHTML = asList(role.skills)
+          .map(getSkillName)
+          .filter(Boolean)
+          .map(skill => `<span class="skill-chip">${escapeHTML(skill)}</span>`)
+          .join("");
+
+        return `
+          <article class="role-card ${selected ? "selected" : ""}">
+            <div>
+              <h3>${escapeHTML(name)}</h3>
+              <div class="role-description">
+                ${escapeHTML(description || "Recommended based on the backend match results.")}
+              </div>
+
+              <div class="skills">${chipsHTML}</div>
+
+              <button class="select-button" type="button"
+                      onclick="selectRole(${index})">
+                ${selected ? "✓ Selected role" : "View skill gaps"}
+              </button>
+            </div>
+
+            <!-- Score column: number plus progress bar. -->
+            <div class="match-score">
+              <strong>${score === null ? "—" : Math.round(score) + "%"}</strong>
+              <small>${score === null ? "score unavailable" : "match score"}</small>
+              ${score === null ? "" : `
+                <div class="meter">
+                  <span style="width:${score}%"></span>
+                </div>
+              `}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      // Summary card 1: how many roles were returned.
+      document.getElementById("roleCount").textContent = matchResults.length;
+
+      // Summary card 2: find the role with the highest score.
+      // Roles without a score are skipped when comparing.
+      const bestRole = matchResults.reduce((best, role) => {
+        if (!best) return role;
+
+        const currentScore = getRoleScore(role);
+        const bestScore = getRoleScore(best);
+
+        if (currentScore === null) return best;
+        if (bestScore === null || currentScore > bestScore) return role;
+
+        return best;
+      }, null);
+
+      document.getElementById("bestRole").textContent =
+        bestRole ? getRoleName(bestRole) : "Score unavailable";
+
+      const bestScore = bestRole ? getRoleScore(bestRole) : null;
+      document.getElementById("bestScore").textContent =
+        bestScore === null ? "—" : `${Math.round(bestScore)}%`;
+    }
+
+    // ----------------------------------------------------------
+    // RENDERING: SKILL GAPS FOR THE SELECTED ROLE
+    // ----------------------------------------------------------
+
+    // Draw the selected role's skill gaps and update the third summary card.
+    // Courses and learning steps are NOT shown here: they are displayed on
+    // the Learning Pathway page (reskilling.html).
+    function renderGaps() {
+      const role = matchResults[selectedRoleIndex];
+      const gapList = document.getElementById("gapList");
+
+      // No role available: clear the panel and keep the button disabled.
+      if (!role) {
+        document.getElementById("gapSubtitle").textContent =
+          "No role selected";
+        document.getElementById("gapCount").textContent = "—";
+        gapList.innerHTML =
+          '<p class="subtitle">Skill gaps are unavailable because no role was returned.</p>';
+        document.getElementById("pathwayButton").disabled = true;
+        return;
+      }
+
+      document.getElementById("gapSubtitle").textContent =
+        "For " + getRoleName(role);
+
+      // "skill_gap" is the field added by the current /api/match route.
+      const gaps = asList(role.skill_gap);
+      document.getElementById("gapCount").textContent = gaps.length;
+
+      // One row per gap. A gap can be a plain string or an object.
+      const gapHTML = gaps.map(gap => {
+        const name = typeof gap === "string"
+          ? gap
+          : (gap.skill_name || gap.skill || gap.name || gap.course_name || "");
+
+        // Priority is optional. Only show a badge if the backend sent one.
+        const priority = typeof gap === "object"
+          ? (gap.priority || gap.importance || "")
+          : "";
+
+        // Use a colour class only for the known values high / medium / low.
+        const priorityClass = ["high", "medium", "low"].includes(
+          String(priority).toLowerCase()
+        ) ? String(priority).toLowerCase() : "";
+
+        return `
+          <div class="gap-item">
+            <div>
+              ${escapeHTML(name || "Skill gap")}
+              <small>Recommended skill to develop</small>
+            </div>
+            ${priority ? `
+              <span class="priority ${priorityClass}">
+                ${escapeHTML(priority)}
+              </span>
+            ` : ""}
+          </div>
+        `;
+      }).join("");
+
+      // Fill the panel. If there are no gaps, show a friendly message instead.
+      gapList.innerHTML =
+        gapHTML || '<p class="subtitle">The API did not return skill-gap details for this role.</p>';
+
+      // A role exists, so the user may continue to the pathway page.
+      document.getElementById("pathwayButton").disabled = false;
+    }
+
+    // Called when the user clicks a role card button.
+    // Updates the selection and redraws both columns.
+    function selectRole(index) {
+      if (!Number.isInteger(index) || !matchResults[index]) return;
+
+      selectedRoleIndex = index;
+      renderRoles();
+      renderGaps();
+    }
+
+    // ----------------------------------------------------------
+    // LOADING DATA FROM THE BACKEND
+    // ----------------------------------------------------------
+
+    // Ask the Flask API for role recommendations.
+    // Runs once when the page opens.
+    async function loadRoleMatches() {
+      // Step 1: read skills from browser storage and show them.
+      const skills = getStoredSkills();
+      cvSkillNames = skills;
+      renderCVSkills();
+
+      // No skills means the user has not uploaded a CV yet.
+      if (!skills.length) {
+        matchResults = [];
+        resetSummary();
+        setStatus(
+          "No CV skills were found in this browser session. Upload your CV first, then return to Role Matching.",
+          true
+        );
+        document.getElementById("roles").innerHTML = "";
+        document.getElementById("pathwayButton").disabled = true;
+        return;
+      }
+
+      // Step 2: show the loading state and keep the continue button disabled.
+      setStatus("Matching your CV skills with available roles…");
+      document.getElementById("pathwayButton").disabled = true;
+
+      try {
+        // Step 3: send the skills and the default scenario to Flask.
+        const response = await fetch("/api/match", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            skills: skills,
+            scenario: DEFAULT_SCENARIO
+          })
+        });
+
+        // FIX: if the server returns a non-JSON page (for example an HTML
+        // error page), response.json() would throw a confusing message.
+        // Catch it and show a clear one instead.
+        let data;
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          throw new Error("The server returned an unreadable response.");
+        }
+
+        // Backend validation or server errors come back with a non-2xx status.
+        if (!response.ok) {
+          throw new Error(data.error || data.message || "The role matching request failed.");
+        }
+
+        // The response must contain a "results" list.
+        if (!Array.isArray(data.results)) {
+          throw new Error("The API response does not contain a valid results list.");
+        }
+
+        // Step 4: store the results and select the first role.
+        matchResults = data.results;
+        selectedRoleIndex = 0;
+
+        renderRoles();
+        renderGaps();
+
+        // Use the backend's disclaimer if it sent one, otherwise a default.
+        document.getElementById("disclaimer").textContent =
+          data.disclaimer ||
+          "Recommendations are generated using the current backend data and matching logic.";
+
+        setStatus(
+          matchResults.length
+            ? `Role matching complete. ${matchResults.length} result(s) returned by the backend.`
+            : "The backend did not find matching roles."
+        );
+      } catch (error) {
+        // Any failure (network, server, bad data) ends up here.
+        console.error("Role matching error:", error);
+        matchResults = [];
+
+        renderRoles("Role matches could not be loaded.");
+        renderGaps();
+
+        setStatus(
+          error.message || "Unable to load role matches. Check the Flask server and API.",
+          true
+        );
+      }
+    }
+
+    // ----------------------------------------------------------
+    // NAVIGATION TO THE NEXT PAGE
+    // ----------------------------------------------------------
+
+    // Save the selected role and go to the Learning Pathway page,
+    // which reads "selectedCareerRole" from sessionStorage.
+    function continuePathway() {
+      const role = matchResults[selectedRoleIndex];
+      if (!role) return;
+
+      try {
+        sessionStorage.setItem("selectedCareerRole", JSON.stringify(role));
+      } catch (error) {
+        // Storage can be blocked (private mode, quota). Warn but still continue.
+        console.error("Could not save the selected role:", error);
+      }
+
+      window.location.href = "/reskilling.html";
+    }
+
+    // ----------------------------------------------------------
+    // START-UP
+    // ----------------------------------------------------------
+
+    // Show the greeting with the name from the uploaded CV.
+    renderProfile();
+
+    // Load the data as soon as the page opens.
+    loadRoleMatches();
+  </script>
+</body>
+
+</html>
